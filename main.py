@@ -1,6 +1,7 @@
 import pygame
 from Object.Pemain import Pemain
-from Object.Peti import Peti
+from Object.Peti import Peti, semua_peti
+from Object.Dinding import semua_dinding, Block
 from pygame.locals import *
 
 # Inisialisasi Pygame
@@ -8,7 +9,10 @@ pygame.init()
 
 # Membuat dan mengatur ukuran windows
 screen = pygame.display.set_mode((800, 600))
+
+#FPS
 clock = pygame.time.Clock()
+FPS = 30
 
 # Judul
 pygame.display.set_caption("Maze Game")
@@ -19,9 +23,13 @@ pemain = Pemain()
 # Peti
 peti = Peti()
 
+# Dinding
+dinding = Block(50, 30)
+
+
 running = True
 while running:
-     clock.tick(30)
+     clock.tick(FPS)
      screen.fill((0, 0, 0))
      for event in pygame.event.get():
           if event.type == pygame.QUIT:
@@ -43,9 +51,9 @@ while running:
                     pemain.gerak_kanan = False
                     pemain.animasi_diam = pemain.animasi_kanan[0]
                
-     if pemain.isTouch(peti.peti_x, peti.peti_y):
-          pemain.pemain_x -= pemain.kecepatan_x
-     
-     pemain.pergerakan(screen)
-     peti.pergerakan(screen)
+     semua_dinding.update(screen)
+     # semua_dinding.draw(screen)
+
+     pemain.update(screen)
+     peti.update(screen)
      pygame.display.update()

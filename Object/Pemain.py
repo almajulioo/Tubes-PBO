@@ -1,7 +1,9 @@
 import pygame
 import math
+from .Peti import semua_peti
+from .Dinding import semua_dinding
 
-class Pemain:
+class Pemain(pygame.sprite.Sprite):
     pemain_x = 100
     pemain_y = 0
     kecepatan_x = 3
@@ -9,15 +11,27 @@ class Pemain:
     gerak_kiri = False
     gerak_kanan = False
     gerak_count = 0
-
+    
     animasi_diam = pygame.image.load("./Assets/Img/Pemain/Diam.png")
     animasi_kiri = [pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri1.png"), pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri2.png"),pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri3.png"),pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri4.png"),pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri5.png"),pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri6.png"),pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri7.png"),pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri8.png")]
     animasi_kanan = [pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan1.png"), pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan2.png"),pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan3.png"),pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan4.png"),pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan5.png"),pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan6.png"), pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan7.png"), pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan8.png")]
 
     def __init__(self):
-        pass
+        super(Pemain, self).__init__()
+        self.rect = self.animasi_diam.convert_alpha().get_rect()
+        self.rect.width -= 16
+        self.is_pemain_touch_peti = pygame.sprite.spritecollide(self, semua_peti, False)
+        self.is_pemain_touch_dinding  = pygame.sprite.spritecollide(self, semua_dinding, False)
 
-    def pergerakan(self, screen):
+    def update(self, screen):
+        self.rect.center = (self.pemain_x + 16, self.pemain_y + 16)
+        self.is_pemain_touch_peti = pygame.sprite.spritecollide(self, semua_peti, False)
+        self.is_pemain_touch_dinding = pygame.sprite.spritecollide(self, semua_dinding, False)
+        # pygame.draw.rect(screen, "Red", self.rect)
+        
+        if self.is_pemain_touch_peti or self.is_pemain_touch_dinding:
+            self.pemain_x -= self.kecepatan_x
+
         if self.gerak_count >= 21:
             self.gerak_count = 0
 
@@ -33,13 +47,6 @@ class Pemain:
             self.gerak_count = 0
             screen.blit(self.animasi_diam, (self.pemain_x, self.pemain_y))
 
-    def isTouch(self, x, y):
-        distance = math.sqrt(math.pow(self.pemain_x - x, 2) + (math.pow(self.pemain_y - y, 2)))
-        if distance < 22:
-            return True
-        else:
-            return False
-        
     def isAbleToInteract(self, x, y):
         distance = math.sqrt(math.pow(self.pemain_x - x, 2) + (math.pow(self.pemain_y - y, 2)))
         if distance < 27:

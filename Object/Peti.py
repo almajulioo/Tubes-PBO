@@ -1,6 +1,8 @@
 import pygame
 
-class Peti:
+semua_peti = pygame.sprite.Group()
+
+class Peti(pygame.sprite.Sprite):
     peti_x = 700
     peti_y = 0
 
@@ -8,12 +10,20 @@ class Peti:
     animasi_buka = [pygame.image.load("./Assets/Img/Peti/Peti1.png"), pygame.image.load("./Assets/Img/Peti/Peti2.png"), pygame.image.load("./Assets/Img/Peti/Peti3.png"), pygame.image.load("./Assets/Img/Peti/Peti4.png"), pygame.image.load("./Assets/Img/Peti/Peti5.png"), pygame.image.load("./Assets/Img/Peti/Peti6.png"), pygame.image.load("./Assets/Img/Peti/Peti7.png"), pygame.image.load("./Assets/Img/Peti/Peti8.png"), pygame.image.load("./Assets/Img/Peti/Peti9.png"), pygame.image.load("./Assets/Img/Peti/Peti10.png")]
     animasi_count = 0
 
+
     buka = False
     
     def __init__(self):
-        pass
+        super(Peti, self).__init__()
+        self.rect = self.animasi_diam.convert_alpha().get_rect()
+        self.rect.width -= 16
+        semua_peti.add(self)
 
-    def pergerakan(self, screen):
+
+    def update(self, screen):
+            self.rect.center = (self.peti_x + 16, self.peti_y + 16)
+            # pygame.draw.rect(screen, "Red", self.rect)
+
             if self.animasi_count == 27:
                 self.buka = False
                 self.animasi_diam = pygame.image.load("./Assets/Img/Peti/Peti10.png")
