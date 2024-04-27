@@ -1,6 +1,7 @@
 import pygame
 
 semua_peti = pygame.sprite.Group()
+list_semua_peti = semua_peti.sprites()
 
 class Peti(pygame.sprite.Sprite):
     peti_x = 700
@@ -16,12 +17,13 @@ class Peti(pygame.sprite.Sprite):
     def __init__(self):
         super(Peti, self).__init__()
         self.rect = self.animasi_diam.convert_alpha().get_rect()
-        self.rect.width -= 16
+        self.rect.width -= 24
+        self.rect.height -= 16
         semua_peti.add(self)
 
 
     def update(self, screen):
-            self.rect.center = (self.peti_x + 16, self.peti_y + 16)
+            self.rect.center = (self.peti_x + 16, self.peti_y + 24)
             # pygame.draw.rect(screen, "Red", self.rect)
 
             if self.animasi_count == 27:

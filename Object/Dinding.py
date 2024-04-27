@@ -1,6 +1,7 @@
 import pygame
 
 semua_dinding = pygame.sprite.Group()
+list_semua_dinding = semua_dinding.sprites()
 
 class Block(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -8,7 +9,6 @@ class Block(pygame.sprite.Sprite):
         self.image = pygame.image.load("./Assets/Img/Dinding/Dinding.png")
 
         self.rect = self.image.convert_alpha().get_rect()
-        # self.rect.width += 100
         self.rect.center = (x, y)
         semua_dinding.add(self)
 
