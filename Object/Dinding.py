@@ -1,9 +1,8 @@
 import pygame
 
 semua_dinding = pygame.sprite.Group()
-list_semua_dinding = semua_dinding.sprites()
 
-class Block(pygame.sprite.Sprite):
+class Dinding(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load("./Assets/Img/Dinding/Dinding.png")

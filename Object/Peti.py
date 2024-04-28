@@ -11,7 +11,6 @@ class Peti(pygame.sprite.Sprite):
     animasi_buka = [pygame.image.load("./Assets/Img/Peti/Peti1.png"), pygame.image.load("./Assets/Img/Peti/Peti2.png"), pygame.image.load("./Assets/Img/Peti/Peti3.png"), pygame.image.load("./Assets/Img/Peti/Peti4.png"), pygame.image.load("./Assets/Img/Peti/Peti5.png"), pygame.image.load("./Assets/Img/Peti/Peti6.png"), pygame.image.load("./Assets/Img/Peti/Peti7.png"), pygame.image.load("./Assets/Img/Peti/Peti8.png"), pygame.image.load("./Assets/Img/Peti/Peti9.png"), pygame.image.load("./Assets/Img/Peti/Peti10.png")]
     animasi_count = 0
 
-
     buka = False
     
     def __init__(self):

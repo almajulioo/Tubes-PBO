@@ -1,13 +1,11 @@
 import pygame
 import math
-from .Peti import semua_peti, list_semua_peti
-from .Dinding import semua_dinding, list_semua_dinding
+from .Peti import semua_peti
+from .Dinding import semua_dinding
 
 class Pemain(pygame.sprite.Sprite):
     pemain_x = 100
     pemain_y = 0
-    kecepatan_x = 3
-    kecepatan_y = 3
 
     gerak_kiri = False
     gerak_kanan = False
@@ -34,50 +32,55 @@ class Pemain(pygame.sprite.Sprite):
 
         # pygame.draw.rect(screen, "Red", self.rect)
         
-        # if self.is_pemain_touch_peti or self.is_pemain_touch_dinding:
-        if self.is_pemain_touch_dinding:
+        if self.is_pemain_touch_dinding and len(self.is_pemain_touch_dinding) == 1:
             for dinding in self.is_pemain_touch_dinding:
                 dinding_rect = dinding.rect
                 if self.rect.right > dinding_rect.left and self.rect.left < dinding_rect.left:
-                    self.pemain_x -= self.kecepatan_x
+                    self.gerak(-3, 0)
                 elif self.rect.left < dinding_rect.right and self.rect.right > dinding_rect.right:
-                    self.pemain_x -= self.kecepatan_x
+                    self.gerak(3, 0)
                 elif self.rect.bottom > dinding_rect.top and self.rect.top < dinding_rect.top:
-                    self.pemain_y -= self.kecepatan_y
+                    self.gerak(0, -3)
                 elif self.rect.top < dinding_rect.bottom and self.rect.bottom > dinding_rect.bottom:
-                    self.pemain_y -= self.kecepatan_y
+                    self.gerak(0, 3)
          
         if self.is_pemain_touch_peti:
             for peti in self.is_pemain_touch_peti:
                 peti_rect = peti.rect
                 if self.rect.right > peti_rect.left and self.rect.left < peti_rect.left:
-                    self.pemain_x -= self.kecepatan_x
+                    self.gerak(-3, 0)
                 elif self.rect.left < peti_rect.right and self.rect.right > peti_rect.right:
-                    self.pemain_x -= self.kecepatan_x
+                    self.gerak(3, 0)
                 elif self.rect.bottom > peti_rect.top and self.rect.top < peti_rect.top:
-                    self.pemain_y -= self.kecepatan_y
+                    self.gerak(0, -3)
                 elif self.rect.top < peti_rect.bottom and self.rect.bottom > peti_rect.bottom:
-                    self.pemain_y -= self.kecepatan_y
+                    self.gerak(0, 3)
 
         if self.gerak_count >= 21:
             self.gerak_count = 0
 
         if self.gerak_kiri == True:
-            self.pemain_x += self.kecepatan_x
+            self.gerak(-3, 0)
             self.gerak_count += 1
             screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_x, self.pemain_y))
         elif self.gerak_kanan == True:
-            self.pemain_x += self.kecepatan_x
+            self.gerak(3, 0)
             self.gerak_count += 1
             screen.blit(self.animasi_kanan[self.gerak_count // 3], (self.pemain_x, self.pemain_y))
-        elif self.gerak_atas == True:
-            self.pemain_y += self.kecepatan_y
+        if self.gerak_atas == True:
+            self.gerak(0, -3)
             self.gerak_count += 1
-            screen.blit(self.animasi_kanan[self.gerak_count // 3], (self.pemain_x, self.pemain_y))
+            if self.gerak_kiri == True:
+                screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_x, self.pemain_y))
+            else:
+                screen.blit(self.animasi_kanan[self.gerak_count // 3], (self.pemain_x, self.pemain_y))
         elif self.gerak_bawah == True:
-            self.pemain_y += self.kecepatan_y
+            self.gerak(0, 3)
             self.gerak_count += 1
-            screen.blit(self.animasi_kanan[self.gerak_count // 3], (self.pemain_x, self.pemain_y))
+            if self.gerak_kiri == True:
+                screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_x, self.pemain_y))
+            else:
+                screen.blit(self.animasi_kanan[self.gerak_count // 3], (self.pemain_x, self.pemain_y))
         else:
             self.gerak_count = 0
             screen.blit(self.animasi_diam, (self.pemain_x, self.pemain_y))
@@ -89,8 +92,6 @@ class Pemain(pygame.sprite.Sprite):
         else:
             return False
 
-    def checkAbove(self, x, y):
-        if self.pemain_y >= y:
-            return True
-        else:
-            return False
+    def gerak(self, x, y):
+        self.pemain_x += x
+        self.pemain_y += y
