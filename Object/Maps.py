@@ -8,21 +8,21 @@ class Maps:
         "                         K",
         "K                  P     K",
         "K                        K",
-        "L                        K",
+        "L                        L",
         "K                        K",
         "K                        K",
-        "L                        K",
+        "L                        L",
         "K                        K",
         "K                        K",
-        "L                        K",
+        "L                        L",
         "K                        K",
         "K                        K",
-        "L                        K",
+        "L                        L",
         "K                        K",
         "K                        K",
         "K                        K",
-        "L                        K",
-        "LCBBCBBCBBBBBBBBBBCBBCBBCL",
+        "L                        L",
+        "LCBBCBBCBBCBBBBCBBCBBCBBCL",
     ]
 
     def __init__(self):
@@ -35,12 +35,19 @@ class Maps:
             print(countrow)
             for col in row:
                 countcol += 1
-                if countrow == 1 and col == "L" and countcol == 1:
+                if countrow == 1 and col == "L":
                     x-= 9
-                    Dinding(x + 9, y, "kiri2")
-                elif countrow == 19 and col == "L" and countcol == 1:
+                    if countcol == 1:
+                        Dinding(x + 9, y, "kiri2")
+                    else:
+                        Dinding(x, y, "kiri2")
+                elif countrow == 19 and col == "L":
                     x-= 9
-                    Dinding(x + 9, y, "kiri2")
+                    if countcol == 1:
+                        Dinding(x + 9, y, "kiri2")
+                    else:
+                        Dinding(x, y, "kiri2")
+
                 
                 elif col == "A":
                     Dinding(x, y, "atas")
@@ -51,7 +58,7 @@ class Maps:
                         Dinding(x, y, "kiri")
                 elif col == "L":
                     if countcol == 26:
-                        Dinding(x - 9, y, "kiri2")
+                        Dinding(x - 18, y, "kiri2")
                     else:
                         Dinding(x, y, "kiri2")
                 elif col == "B":
