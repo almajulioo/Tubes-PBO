@@ -2,6 +2,7 @@ import pygame
 from Object.Pemain import Pemain
 from Object.Peti import Peti, semua_peti
 from Object.Dinding import semua_dinding, Dinding
+from Object.Maps import Maps
 from pygame.locals import *
 
 # Inisialisasi Pygame
@@ -20,12 +21,8 @@ pygame.display.set_caption("Maze Game")
 # Pemain
 pemain = Pemain()
 
-# Peti
-peti = Peti()
-
-# Dinding
-dinding = Dinding(50, 30)
-
+# Maps
+maps = Maps()
 
 running = True
 while running:
@@ -43,8 +40,10 @@ while running:
                     pemain.gerak_atas = True
                if event.key == pygame.K_s and pemain.gerak_atas == False:
                     pemain.gerak_bawah = True
-               if event.key == pygame.K_f and pemain.isAbleToInteract(peti.peti_x, peti.peti_y):
-                    peti.buka = True
+               if event.key == pygame.K_f:
+                    for peti in semua_peti.sprites():
+                         if pemain.isAbleToInteract(peti.peti_x, peti.peti_y):
+                              peti.buka = True
           if event.type == pygame.KEYUP:
                if event.key == pygame.K_a:
                     pemain.gerak_kiri = False
@@ -61,5 +60,5 @@ while running:
      # semua_dinding.draw(screen)
 
      pemain.update(screen)
-     peti.update(screen)
+     semua_peti.update(screen)
      pygame.display.update()
