@@ -4,7 +4,7 @@ semua_dinding = pygame.sprite.Group()
 
 class Dinding(pygame.sprite.Sprite):
     def __init__(self, x, y, sisi):
-        pygame.sprite.Sprite.__init__(self)
+        super(Dinding, self).__init__()
         if sisi == "atas":
             self.dinding = pygame.image.load("./Assets/Img/Dinding/dinding_atas.png")
         elif sisi == "bawah":

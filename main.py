@@ -1,7 +1,8 @@
 import pygame
 from Object.Pemain import Pemain
-from Object.Peti import Peti, semua_peti
-from Object.Dinding import semua_dinding, Dinding
+from Object.Peti import semua_peti
+from Object.Dinding import semua_dinding
+from Object.Background import semua_background
 from Object.Maps import Maps
 from pygame.locals import *
 
@@ -56,9 +57,9 @@ while running:
                if event.key == pygame.K_s:
                     pemain.gerak_bawah = False
                
+     semua_background.update(screen)
      semua_dinding.update(screen)
-     # semua_dinding.draw(screen)
+     semua_peti.update(screen)
 
      pemain.update(screen)
-     semua_peti.update(screen)
      pygame.display.update()

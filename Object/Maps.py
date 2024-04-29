@@ -1,6 +1,7 @@
 import pygame
 from .Dinding import Dinding
 from .Peti import Peti
+from .Background import Background
 
 class Maps:
     MAPS = [
@@ -28,11 +29,11 @@ class Maps:
     def __init__(self):
         x = 30
         y = 30
+
         countrow = 0
         countcol = 0
         for row in self.MAPS:
             countrow+=1
-            print(countrow)
             for col in row:
                 countcol += 1
                 if countrow == 1 and col == "L":
@@ -65,8 +66,13 @@ class Maps:
                     Dinding(x, y + 8, "bawah")
                 elif col == "C":
                     Dinding(x, y + 8, "bawah2")
+                elif col == "G":
+                    pass
                 elif col == "P":
+                    Background(x - 24, y)
                     Peti(x, y)
+                elif col == " ":
+                    Background(x - 24, y)
                 x += 30
             countcol= 0
             y += 30
