@@ -43,7 +43,7 @@ while running:
                     pemain.gerak_bawah = True
                if event.key == pygame.K_f:
                     for peti in semua_peti.sprites():
-                         if pemain.isAbleToInteract(peti.peti_x, peti.peti_y):
+                         if pemain.isAbleToInteract(peti.rect.topleft):
                               peti.buka = True
           if event.type == pygame.KEYUP:
                if event.key == pygame.K_a:
@@ -56,7 +56,10 @@ while running:
                     pemain.gerak_atas = False
                if event.key == pygame.K_s:
                     pemain.gerak_bawah = False
-               
+     for peti in semua_peti.sprites():
+          print(peti.peti_x)
+          print(pemain.pemain_x)
+
      semua_background.update(screen)
      semua_dinding.update(screen)
      semua_peti.update(screen)

@@ -4,7 +4,7 @@ from .Peti import semua_peti
 from .Dinding import semua_dinding
 
 class Pemain(pygame.sprite.Sprite):
-    pemain_x = 16
+    pemain_x = 391
     pemain_y = 36
 
     gerak_kiri = False
@@ -83,9 +83,9 @@ class Pemain(pygame.sprite.Sprite):
             screen.blit(self.animasi_diam, (self.pemain_x, self.pemain_y))
 
 
-    def isAbleToInteract(self, x, y):
-        distance = math.sqrt(math.pow(self.pemain_x - x, 2) + (math.pow(self.pemain_y - y, 2)))
-        if distance < 27:
+    def isAbleToInteract(self, pos):
+        distance = math.sqrt(math.pow(self.pemain_x - pos[0], 2) + (math.pow(self.pemain_y - pos[1], 2)))
+        if distance < 32:
             return True
         else:
             return False
