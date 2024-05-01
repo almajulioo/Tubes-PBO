@@ -11,10 +11,18 @@ class Dinding(pygame.sprite.Sprite):
             self.dinding = pygame.image.load("./Assets/Img/Dinding/dinding_bawah.png")
         elif sisi == "bawah2":
             self.dinding = pygame.image.load("./Assets/Img/Dinding/dinding_bawah2.png")
-        elif sisi == "kanan" or sisi == "kiri":
+        elif sisi == "kiri":
             self.dinding = pygame.image.load("./Assets/Img/Dinding/dinding_kiri.png")
-        elif sisi == "kanan2" or sisi == "kiri2":
+        elif sisi == "kiri2":
             self.dinding = pygame.image.load("./Assets/Img/Dinding/dinding_kiri2.png")
+        elif sisi == "kanan":
+            self.dinding = pygame.image.load("./Assets/Img/Dinding/dinding_kanan.png")
+        elif sisi == "kanan2":
+            self.dinding = pygame.image.load("./Assets/Img/Dinding/dinding_kanan2.png")
+        elif sisi == "penghubung":
+            self.dinding = pygame.image.load("./Assets/Img/Dinding/penghubung.png")
+       
+       
         self.rect = self.dinding.convert_alpha().get_rect()
         self.rect.center = (x, y)
         semua_dinding.add(self)
