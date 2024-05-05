@@ -4,8 +4,8 @@ from .Peti import semua_peti
 from .Dinding import semua_dinding
 
 class Pemain(pygame.sprite.Sprite):
-    pemain_x = 391
-    pemain_y = 36
+    pemain_x = 19
+    pemain_y = 42
 
     gerak_kiri = False
     gerak_kanan = False
