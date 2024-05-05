@@ -11,5 +11,6 @@ class Background(pygame.sprite.Sprite):
         self.rect = self.background.convert_alpha().get_rect()
         self.rect.center = (x, y)
         semua_background.add(self)
+        
     def update(self, screen):
         screen.blit(self.background, self.rect)

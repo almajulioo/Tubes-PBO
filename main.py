@@ -31,11 +31,19 @@ maps = Maps()
 
 running = True
 while running:
+     # Setting Frame Per Second
      clock.tick(FPS)
+
+     # Selalu Mengisi screen dengan layar hitam
      screen.fill((0, 0, 0))
+
+     # Penanganan event pygame
      for event in pygame.event.get():
+          # Penanganan jika ingin keluar
           if event.type == pygame.QUIT:
                running = False
+          
+          # Penanganan jika menekan suatu tombol
           if event.type == pygame.KEYDOWN:
                if event.key == pygame.K_a and pemain.gerak_kanan == False:
                     pemain.gerak_kiri = True
@@ -49,6 +57,8 @@ while running:
                     for peti in semua_peti.sprites():
                          if pemain.isAbleToInteract(peti.rect.topleft):
                               peti.buka = True
+          
+          # Penanganan jika melepas suatu tombol
           if event.type == pygame.KEYUP:
                if event.key == pygame.K_a:
                     pemain.gerak_kiri = False
@@ -61,9 +71,11 @@ while running:
                if event.key == pygame.K_s:
                     pemain.gerak_bawah = False
 
+     # Melakukan update untuk setiap objek (Berguna juga untuk mengatur layer dari yang terbelakang hingga terdepan)
      semua_background.update(screen)
      semua_dinding.update(screen)
      semua_peti.update(screen)
-
      pemain.update(screen)
+
+     # Melakukan update setiap iterasi
      pygame.display.update()
