@@ -1,4 +1,8 @@
-import pygame
+try:
+     import pygame
+except:
+     print("Anda belum menginstall pygame!")
+
 from Object.Pemain import Pemain
 from Object.Peti import semua_peti
 from Object.Dinding import semua_dinding
@@ -56,9 +60,6 @@ while running:
                     pemain.gerak_atas = False
                if event.key == pygame.K_s:
                     pemain.gerak_bawah = False
-     for peti in semua_peti.sprites():
-          print(peti.peti_x)
-          print(pemain.pemain_x)
 
      semua_background.update(screen)
      semua_dinding.update(screen)
