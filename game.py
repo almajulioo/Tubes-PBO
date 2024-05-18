@@ -92,23 +92,24 @@ class Game:
                               self.pemain.gerak_bawah = False
 
                # Melakukan update untuk setiap objek (Berguna juga untuk mengatur layer dari yang terbelakang hingga terdepan)
-               semua_background.update(self.screen)
-               semua_dinding.update(self.screen)
-               semua_peti.update(self.screen)
-               semua_kunci.update(self.screen)
-               self.pemain.update(self.screen)
+               semua_background.update(self.display, self.scroll)
+               semua_dinding.update(self.display, self.scroll)
+               semua_peti.update(self.display, self.scroll)
+               semua_kunci.update(self.display, self.scroll)
+               self.pemain.update(self.display, self.scroll)
+               
 
-               #self.fog.fill((7,7,10))
+               self.fog.fill((7,7,10))
                pygame.draw.circle(self.fog, (0,0,0,50), (self.pemain.rect.centerx - self.scroll[0], self.pemain.rect.centery - self.scroll[1]), 50)
               
-               self.screen.blit(self.fog, (0,0))
-
+               self.display.blit(self.fog, (0,0))
+               self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
                if self.timer_detik <= 10:
                     self.screen.blit(self.font.render(f"0{self.timer_menit}:0{self.timer_detik}", True, (255, 255, 255)), (700, 50))
                else:
                     self.screen.blit(self.font.render(f"0{self.timer_menit}:{self.timer_detik}", True, (255, 255, 255)), (700, 50))
 
-
+               
                # Melakukan update setiap iterasi
                pygame.display.update()
                
