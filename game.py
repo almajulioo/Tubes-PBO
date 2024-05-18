@@ -16,13 +16,15 @@ class Game:
           pygame.display.set_caption("Maze Rusher")
           self.screen = pygame.display.set_mode((800, 600))
           self.clock = pygame.time.Clock()
-          self.fog = pygame.surface((800, 600))
-          self.fog.fill((0, 0, 0))
-          
 
           self.pemain = Pemain()
 
           self.maps = Maps()
+
+          self.fog = pygame.Surface((800, 600)).convert_alpha()
+          
+
+
 
      def run(self):
           while True:
@@ -31,9 +33,7 @@ class Game:
 
                # Selalu Mengisi screen dengan layar hitam
                self.screen.fill((0, 0, 0))
-
-
-
+               
 
 
                # Penanganan event pygame
@@ -76,7 +76,12 @@ class Game:
                semua_dinding.update(self.screen)
                semua_peti.update(self.screen)
                self.pemain.update(self.screen)
-             
+
+               self.fog.fill((7,7,10))
+               pygame.draw.circle(self.fog, (0,0,0,50), self.pemain.rect.center, 50)
+              
+               self.screen.blit(self.fog, (0,0))
+
 
 
 
