@@ -27,6 +27,6 @@ class Dinding(pygame.sprite.Sprite):
         self.rect.center = (x, y)
         semua_dinding.add(self)
 
-    def update(self, screen):
-        screen.blit(self.dinding, self.rect)
+    def update(self, screen, offset=(0,0)): 
+        screen.blit(self.dinding, (self.rect[0] - offset[0], self.rect[1] - offset[1]))
         #pygame.draw.rect(screen, "Red", self.rect)

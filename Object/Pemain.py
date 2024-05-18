@@ -29,7 +29,7 @@ class Pemain(pygame.sprite.Sprite):
         self.is_pemain_touch_peti = pygame.sprite.spritecollide(self, semua_peti, False)
         self.is_pemain_touch_dinding  = pygame.sprite.spritecollide(self, semua_dinding, False)
 
-    def update(self, screen):
+    def update(self, screen, offset=(0,0)):
         self.rect.center = (self.pemain_pos[0] + 16, self.pemain_pos[1] + 24)
         self.is_pemain_touch_peti = pygame.sprite.spritecollide(self, semua_peti, False)
         self.is_pemain_touch_dinding = pygame.sprite.spritecollide(self, semua_dinding, False)
@@ -76,15 +76,15 @@ class Pemain(pygame.sprite.Sprite):
             self.gerak_count += 1
 
         if self.gerak_kiri == True:
-            screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_pos[0], self.pemain_pos[1]))
+            screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_pos[0] - offset[0] , self.pemain_pos[1] - offset[1]))
         elif self.gerak_kanan == True:
-            screen.blit(self.animasi_kanan[self.gerak_count // 3], (self.pemain_pos[0], self.pemain_pos[1]))
+            screen.blit(self.animasi_kanan[self.gerak_count // 3], (self.pemain_pos[0] - offset[0], self.pemain_pos[1] - offset[1]))
         elif self.gerak_bawah == True:
-            screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_pos[0], self.pemain_pos[1]))
+            screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_pos[0] - offset[0], self.pemain_pos[1] - offset[1]))
         elif self.gerak_atas == True:
-            screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_pos[0], self.pemain_pos[1]))
+            screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_pos[0] - offset[0], self.pemain_pos[1] - offset[1]))
         else:
-            screen.blit(self.animasi_diam, (self.pemain_pos[0], self.pemain_pos[1]))
+            screen.blit(self.animasi_diam, (self.pemain_pos[0] - offset[0], self.pemain_pos[1] - offset[1]))
 
 
     def isAbleToInteract(self, pos):

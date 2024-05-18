@@ -19,15 +19,18 @@ class Peti(pygame.sprite.Sprite):
         semua_peti.add(self)
 
 
-    def update(self, screen):
+    def update(self, screen, offset=(0,0)):
             # pygame.draw.rect(screen, "Red", self.rect)
 
             if self.animasi_count == 27:
                 self.buka = False
                 self.animasi_diam = pygame.image.load("./Assets/Img/Peti/Peti10.png")
-            
+
+
             if self.buka == True:
                 self.animasi_count += 1 
-                screen.blit(self.animasi_buka[self.animasi_count // 3], self.rect)
+                screen.blit(self.animasi_buka[self.animasi_count // 3], (self.rect[0] - offset[0], self.rect[1] - offset[1]))
             else:  
-                screen.blit(self.animasi_diam, self.rect)
+                screen.blit(self.animasi_diam, (self.rect[0] - offset[0], self.rect[1] - offset[1]))
+
+            
