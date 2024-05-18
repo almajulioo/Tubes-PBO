@@ -105,7 +105,7 @@ class Game:
                else:
                     self.screen.blit(self.font.render(f"0{self.timer_menit}:{self.timer_detik}", True, (255, 255, 255)), (700, 50))
 
-               
+               self.screen.blit(self.font.render(f"Kunci Terambil : {self.pemain.kunci_terambil}", True, (255, 255, 255)), (20, 50))
                # Melakukan update setiap iterasi
                pygame.display.update()
                

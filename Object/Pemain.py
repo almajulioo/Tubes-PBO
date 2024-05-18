@@ -2,6 +2,7 @@ import pygame
 import math
 from .Peti import semua_peti
 from .Dinding import semua_dinding
+from .Kunci import semua_kunci
 
 class Pemain(pygame.sprite.Sprite):
 
@@ -18,6 +19,9 @@ class Pemain(pygame.sprite.Sprite):
     animasi_kanan = [pygame.image.load("./Assets/Img/Pemain/Mov/1.png"), pygame.image.load("./Assets/Img/Pemain/Mov/2.png"),pygame.image.load("./Assets/Img/Pemain/Mov/3.png"),pygame.image.load("./Assets/Img/Pemain/Mov/4.png"),pygame.image.load("./Assets/Img/Pemain/Mov/5.png"),pygame.image.load("./Assets/Img/Pemain/Mov/6.png"), pygame.image.load("./Assets/Img/Pemain/Mov/7.png"), pygame.image.load("./Assets/Img/Pemain/Mov/8.png")]
 
     animasi_kiri = []
+
+    kunci_terambil = 0
+
     for i in animasi_kanan:
         animasi_kiri.append(pygame.transform.flip(i,True,False))
 
@@ -34,6 +38,7 @@ class Pemain(pygame.sprite.Sprite):
         self.rect.center = (self.pemain_pos[0] + 16, self.pemain_pos[1] + 24)
         self.is_pemain_touch_peti = pygame.sprite.spritecollide(self, semua_peti, False)
         self.is_pemain_touch_dinding = pygame.sprite.spritecollide(self, semua_dinding, False)
+        self.is_pemain_touch_kunci = pygame.sprite.spritecollide(self, semua_kunci, False)
 
         #pygame.draw.rect(screen, "Red", self.rect)
         if self.is_pemain_touch_dinding:
@@ -59,6 +64,13 @@ class Pemain(pygame.sprite.Sprite):
                     self.gerak(0, -3)
                 elif self.rect.top < peti_rect.bottom and self.rect.bottom > peti_rect.bottom:
                     self.gerak(0, 3)
+
+        if self.is_pemain_touch_kunci:
+            for kunci in self.is_pemain_touch_kunci:
+                self.kunci_terambil += 1
+                kunci.terambil = True
+                
+
 
         if self.gerak_count >= 21:
             self.gerak_count = 0
@@ -90,7 +102,7 @@ class Pemain(pygame.sprite.Sprite):
         self.fog.fill((7,7,10))
         pygame.draw.circle(self.fog, (0,0,0,50), (self.rect.centerx - offset[0], self.rect.centery - offset[1]), 50)
         
-        screen.blit(self.fog, (0,0))
+        # screen.blit(self.fog, (0,0))
 
 
     def isAbleToInteract(self, pos):

@@ -17,7 +17,7 @@ class Maps:
         "L                      N",
         "M                      K",
         "L                      N",
-        "M              Z       K",
+        "M              Z  Z    K",
         "L                      N",
         "M                      K",
         "L                      K",
