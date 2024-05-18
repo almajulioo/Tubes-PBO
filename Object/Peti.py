@@ -25,7 +25,7 @@ class Peti(pygame.sprite.Sprite):
             if self.animasi_count == 27:
                 self.buka = False
                 self.animasi_diam = pygame.image.load("./Assets/Img/Peti/Peti10.png")
-                
+            
             if self.buka == True:
                 self.animasi_count += 1 
                 screen.blit(self.animasi_buka[self.animasi_count // 3], self.rect)
