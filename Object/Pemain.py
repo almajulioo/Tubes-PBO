@@ -34,7 +34,7 @@ class Pemain(pygame.sprite.Sprite):
         self.is_pemain_touch_peti = pygame.sprite.spritecollide(self, semua_peti, False)
         self.is_pemain_touch_dinding = pygame.sprite.spritecollide(self, semua_dinding, False)
 
-        pygame.draw.rect(screen, "Red", self.rect)
+        #pygame.draw.rect(screen, "Red", self.rect)
         if self.is_pemain_touch_dinding:
             for dinding in self.is_pemain_touch_dinding:
                 dinding_rect = dinding.rect
