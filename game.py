@@ -37,7 +37,20 @@ class Game:
                     
                     # Penanganan jika menekan suatu tombol
                     if event.type == pygame.KEYDOWN:
-                         if event.key == pygame.K_a and self.pemain.gerak_kanan == False:
+                         if event.key == pygame.K_a:
+                              self.pemain.gerak_kiri = True
+                         if event.key == pygame.K_d:
+                              self.pemain.gerak_kanan = True
+                         if event.key == pygame.K_w:
+                              self.pemain.gerak_atas = True
+                         if event.key == pygame.K_s:
+                              self.pemain.gerak_bawah = True
+                         if event.key == pygame.K_f:
+                              for peti in semua_peti.sprites():
+                                   if self.pemain.isAbleToInteract(peti.rect.topleft):
+                                        peti.buka = True
+
+                         '''if event.key == pygame.K_a and self.pemain.gerak_kanan == False:
                               self.pemain.gerak_kiri = True
                          if event.key == pygame.K_d and self.pemain.gerak_kiri == False:
                               self.pemain.gerak_kanan = True
@@ -48,7 +61,7 @@ class Game:
                          if event.key == pygame.K_f:
                               for peti in semua_peti.sprites():
                                    if self.pemain.isAbleToInteract(peti.rect.topleft):
-                                        peti.buka = True
+                                        peti.buka = True'''
                     
                     # Penanganan jika melepas suatu tombol
                     if event.type == pygame.KEYUP:
