@@ -28,6 +28,7 @@ class Pemain(pygame.sprite.Sprite):
         self.rect.height -= 16
         self.is_pemain_touch_peti = pygame.sprite.spritecollide(self, semua_peti, False)
         self.is_pemain_touch_dinding  = pygame.sprite.spritecollide(self, semua_dinding, False)
+        self.fog = pygame.Surface((400, 300)).convert_alpha()
 
     def update(self, screen, offset=(0,0)):
         self.rect.center = (self.pemain_pos[0] + 16, self.pemain_pos[1] + 24)
@@ -85,6 +86,11 @@ class Pemain(pygame.sprite.Sprite):
             screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_pos[0] - offset[0], self.pemain_pos[1] - offset[1]))
         else:
             screen.blit(self.animasi_diam, (self.pemain_pos[0] - offset[0], self.pemain_pos[1] - offset[1]))
+
+        self.fog.fill((7,7,10))
+        pygame.draw.circle(self.fog, (0,0,0,50), (self.rect.centerx - offset[0], self.rect.centery - offset[1]), 50)
+        
+        screen.blit(self.fog, (0,0))
 
 
     def isAbleToInteract(self, pos):

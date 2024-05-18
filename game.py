@@ -25,7 +25,6 @@ class Game:
 
           self.maps = Maps()
 
-          self.fog = pygame.Surface((400, 300)).convert_alpha()
 
           self.scroll = [0,0]
           
@@ -99,10 +98,7 @@ class Game:
                self.pemain.update(self.display, self.scroll)
                
 
-               self.fog.fill((7,7,10))
-               pygame.draw.circle(self.fog, (0,0,0,50), (self.pemain.rect.centerx - self.scroll[0], self.pemain.rect.centery - self.scroll[1]), 50)
               
-               self.display.blit(self.fog, (0,0))
                self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
                if self.timer_detik <= 10:
                     self.screen.blit(self.font.render(f"0{self.timer_menit}:0{self.timer_detik}", True, (255, 255, 255)), (700, 50))
