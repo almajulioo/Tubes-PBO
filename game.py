@@ -16,7 +16,7 @@ class Game:
           pygame.display.set_caption("Maze Rusher")
           self.screen = pygame.display.set_mode((800, 600))
           self.clock = pygame.time.Clock()
-          self.fog = pygame.surface((800, 600))
+          self.fog = pygame.Surface((800, 600))
           self.fog.fill((0, 0, 0))
           
 
