@@ -12,5 +12,5 @@ class Background(pygame.sprite.Sprite):
         self.rect.center = (x, y)
         semua_background.add(self)
         
-    def update(self, screen):
-        screen.blit(self.background, self.rect)
+    def update(self, screen, offset=(0,0)):
+        screen.blit(self.background, (self.rect[0] - offset[0], self.rect[1] - offset[1]))
