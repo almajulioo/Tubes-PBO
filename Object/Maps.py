@@ -2,6 +2,7 @@ import pygame
 from .Dinding import Dinding
 from .Peti import Peti
 from .Background import Background
+from .Kunci import Kunci
 
 class Maps:
     MAPS = [
@@ -16,7 +17,7 @@ class Maps:
         "L                      N",
         "M                      K",
         "L                      N",
-        "M                      K",
+        "M              Z       K",
         "L                      N",
         "M                      K",
         "L                      K",
@@ -58,6 +59,9 @@ class Maps:
                     Dinding(x - 9, y - 10, "penghubung")
                 elif col == "P":
                     Peti(x, y)
+                elif col == "Z":
+                    Background(x, y)
+                    Kunci(x, y, "")
                 elif col == " ":
                     Background(x , y)
                 x += 32
