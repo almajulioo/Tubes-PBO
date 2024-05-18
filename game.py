@@ -15,13 +15,17 @@ class Game:
 
           pygame.display.set_caption("Maze Rusher")
           self.screen = pygame.display.set_mode((800, 600))
+          self.display = pygame.Surface((400,300))
+
           self.clock = pygame.time.Clock()
 
           self.pemain = Pemain()
 
           self.maps = Maps()
 
-          self.fog = pygame.Surface((800, 600)).convert_alpha()
+          self.fog = pygame.Surface((400, 300)).convert_alpha()
+
+          self.scroll = [0,0]
           
 
 
@@ -31,8 +35,12 @@ class Game:
                # Setting Frame Per Second
                self.clock.tick(30)
 
+               # Camera 
+               self.scroll[0] += (self.pemain.rect[0] - self.display.get_width() / 2 - self.scroll[0])
+               self.scroll[1] += (self.pemain.rect[1] - self.display.get_height() / 2 - self.scroll[1])
+               
                # Selalu Mengisi screen dengan layar hitam
-               self.screen.fill((0, 0, 0))
+               self.display.fill((0, 0, 0))
                
 
 
@@ -72,16 +80,17 @@ class Game:
                               self.pemain.gerak_bawah = False
 
                # Melakukan update untuk setiap objek (Berguna juga untuk mengatur layer dari yang terbelakang hingga terdepan)
-               semua_background.update(self.screen)
-               semua_dinding.update(self.screen)
-               semua_peti.update(self.screen)
-               self.pemain.update(self.screen)
+               semua_background.update(self.display, offset=self.scroll)
+               semua_dinding.update(self.display, offset=self.scroll)
+               semua_peti.update(self.display, offset=self.scroll)
+               self.pemain.update(self.display, offset=self.scroll)
 
-               self.fog.fill((7,7,10))
-               pygame.draw.circle(self.fog, (0,0,0,50), self.pemain.rect.center, 50)
+               #self.fog.fill((7,7,10))
+               pygame.draw.circle(self.fog, (0,0,0,50), (self.pemain.rect.centerx - self.scroll[0], self.pemain.rect.centery - self.scroll[1]), 50)
               
-               self.screen.blit(self.fog, (0,0))
+               self.display.blit(self.fog, (0,0))
 
+               self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
 
 
 
