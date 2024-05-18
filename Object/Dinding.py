@@ -29,4 +29,4 @@ class Dinding(pygame.sprite.Sprite):
 
     def update(self, screen):
         screen.blit(self.dinding, self.rect)
-        # pygame.draw.rect(screen, "Red", self.rect)
+        #pygame.draw.rect(screen, "Red", self.rect)

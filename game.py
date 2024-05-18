@@ -8,6 +8,7 @@ from Object.Maps import Maps
 from pygame.locals import *
 
 
+
 class Game:
      def __init__(self):
           pygame.init()
@@ -15,6 +16,9 @@ class Game:
           pygame.display.set_caption("Maze Rusher")
           self.screen = pygame.display.set_mode((800, 600))
           self.clock = pygame.time.Clock()
+          self.fog = pygame.surface((800, 600))
+          self.fog.fill((0, 0, 0))
+          
 
           self.pemain = Pemain()
 
@@ -27,6 +31,10 @@ class Game:
 
                # Selalu Mengisi screen dengan layar hitam
                self.screen.fill((0, 0, 0))
+
+
+
+
 
                # Penanganan event pygame
                for event in pygame.event.get():
@@ -49,19 +57,6 @@ class Game:
                               for peti in semua_peti.sprites():
                                    if self.pemain.isAbleToInteract(peti.rect.topleft):
                                         peti.buka = True
-
-                         '''if event.key == pygame.K_a and self.pemain.gerak_kanan == False:
-                              self.pemain.gerak_kiri = True
-                         if event.key == pygame.K_d and self.pemain.gerak_kiri == False:
-                              self.pemain.gerak_kanan = True
-                         if event.key == pygame.K_w and self.pemain.gerak_bawah == False:
-                              self.pemain.gerak_atas = True
-                         if event.key == pygame.K_s and self.pemain.gerak_atas == False:
-                              self.pemain.gerak_bawah = True
-                         if event.key == pygame.K_f:
-                              for peti in semua_peti.sprites():
-                                   if self.pemain.isAbleToInteract(peti.rect.topleft):
-                                        peti.buka = True'''
                     
                     # Penanganan jika melepas suatu tombol
                     if event.type == pygame.KEYUP:
@@ -81,8 +76,12 @@ class Game:
                semua_dinding.update(self.screen)
                semua_peti.update(self.screen)
                self.pemain.update(self.screen)
+             
+
+
 
                # Melakukan update setiap iterasi
                pygame.display.update()
+               
 
 Game().run()

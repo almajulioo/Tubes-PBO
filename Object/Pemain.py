@@ -4,8 +4,8 @@ from .Peti import semua_peti
 from .Dinding import semua_dinding
 
 class Pemain(pygame.sprite.Sprite):
-    pemain_x = 19
-    pemain_y = 42
+
+    pemain_pos = [19,42]
 
     gerak_kiri = False
     gerak_kanan = False
@@ -17,7 +17,9 @@ class Pemain(pygame.sprite.Sprite):
 
     animasi_kanan = [pygame.image.load("./Assets/Img/Pemain/Mov/1.png"), pygame.image.load("./Assets/Img/Pemain/Mov/2.png"),pygame.image.load("./Assets/Img/Pemain/Mov/3.png"),pygame.image.load("./Assets/Img/Pemain/Mov/4.png"),pygame.image.load("./Assets/Img/Pemain/Mov/5.png"),pygame.image.load("./Assets/Img/Pemain/Mov/6.png"), pygame.image.load("./Assets/Img/Pemain/Mov/7.png"), pygame.image.load("./Assets/Img/Pemain/Mov/8.png")]
 
-    animasi_kiri = pygame.transform.flip(animasi_kanan, True, False)
+    animasi_kiri = []
+    for i in animasi_kanan:
+        animasi_kiri.append(pygame.transform.flip(i,True,False))
 
     def __init__(self):
         super(Pemain, self).__init__()
@@ -28,11 +30,11 @@ class Pemain(pygame.sprite.Sprite):
         self.is_pemain_touch_dinding  = pygame.sprite.spritecollide(self, semua_dinding, False)
 
     def update(self, screen):
-        self.rect.center = (self.pemain_x + 16, self.pemain_y + 24)
+        self.rect.center = (self.pemain_pos[0] + 16, self.pemain_pos[1] + 24)
         self.is_pemain_touch_peti = pygame.sprite.spritecollide(self, semua_peti, False)
         self.is_pemain_touch_dinding = pygame.sprite.spritecollide(self, semua_dinding, False)
 
-        # pygame.draw.rect(screen, "Red", self.rect)
+        pygame.draw.rect(screen, "Red", self.rect)
         if self.is_pemain_touch_dinding:
             for dinding in self.is_pemain_touch_dinding:
                 dinding_rect = dinding.rect
@@ -74,24 +76,24 @@ class Pemain(pygame.sprite.Sprite):
             self.gerak_count += 1
 
         if self.gerak_kiri == True:
-            screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_x, self.pemain_y))
+            screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_pos[0], self.pemain_pos[1]))
         elif self.gerak_kanan == True:
-            screen.blit(self.animasi_kanan[self.gerak_count // 3], (self.pemain_x, self.pemain_y))
+            screen.blit(self.animasi_kanan[self.gerak_count // 3], (self.pemain_pos[0], self.pemain_pos[1]))
         elif self.gerak_bawah == True:
-            screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_x, self.pemain_y))
+            screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_pos[0], self.pemain_pos[1]))
         elif self.gerak_atas == True:
-            screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_x, self.pemain_y))
+            screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_pos[0], self.pemain_pos[1]))
         else:
-            screen.blit(self.animasi_diam, (self.pemain_x, self.pemain_y))
+            screen.blit(self.animasi_diam, (self.pemain_pos[0], self.pemain_pos[1]))
 
 
     def isAbleToInteract(self, pos):
-        distance = math.sqrt(math.pow(self.pemain_x - pos[0], 2) + (math.pow(self.pemain_y - pos[1], 2)))
+        distance = math.sqrt(math.pow(self.pemain_pos[0] - pos[0], 2) + (math.pow(self.pemain_pos[1] - pos[1], 2)))
         if distance < 32:
             return True
         else:
             return False
 
     def gerak(self, x, y):
-        self.pemain_x += x
-        self.pemain_y += y
+        self.pemain_pos[0] += x
+        self.pemain_pos[1] += y
