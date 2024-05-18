@@ -14,8 +14,10 @@ class Pemain(pygame.sprite.Sprite):
     gerak_count = 0
     
     animasi_diam = pygame.image.load("./Assets/Img/Pemain/Diam.png")
-    animasi_kiri = [pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri1.png"), pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri2.png"),pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri3.png"),pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri4.png"),pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri5.png"),pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri6.png"),pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri7.png"),pygame.image.load("./Assets/Img/Pemain/Kiri/Kiri8.png")]
-    animasi_kanan = [pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan1.png"), pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan2.png"),pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan3.png"),pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan4.png"),pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan5.png"),pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan6.png"), pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan7.png"), pygame.image.load("./Assets/Img/Pemain/Kanan/Kanan8.png")]
+
+    animasi_kanan = [pygame.image.load("./Assets/Img/Pemain/Mov/1.png"), pygame.image.load("./Assets/Img/Pemain/Mov/2.png"),pygame.image.load("./Assets/Img/Pemain/Mov/3.png"),pygame.image.load("./Assets/Img/Pemain/Mov/4.png"),pygame.image.load("./Assets/Img/Pemain/Mov/5.png"),pygame.image.load("./Assets/Img/Pemain/Mov/6.png"), pygame.image.load("./Assets/Img/Pemain/Mov/7.png"), pygame.image.load("./Assets/Img/Pemain/Mov/8.png")]
+
+    animasi_kiri = pygame.transform.flip(animasi_kanan, True, False)
 
     def __init__(self):
         super(Pemain, self).__init__()
