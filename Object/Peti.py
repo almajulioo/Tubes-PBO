@@ -16,6 +16,8 @@ class Peti(pygame.sprite.Sprite):
         self.peti_y = y
         self.rect = self.animasi_diam.convert_alpha().get_rect()
         self.rect.center = (self.peti_x, self.peti_y)
+        self.suara_buka = pygame.mixer.Sound("./Assets/Music/buka_peti.wav")
+        self.suara_counter = 0
         semua_peti.add(self)
 
 
@@ -27,6 +29,9 @@ class Peti(pygame.sprite.Sprite):
                 self.animasi_diam = pygame.image.load("./Assets/Img/Peti/Peti10.png")
                 
             if self.buka == True:
+                if self.suara_counter == 0:
+                    pygame.mixer.Sound.play(self.suara_buka)
+                self.suara_counter += 1
                 self.animasi_count += 1 
                 screen.blit(self.animasi_buka[self.animasi_count // 3], (self.rect[0] - offset[0], self.rect[1] - offset[1]))
             else:  

@@ -26,8 +26,9 @@ class Game:
 
           self.maps = Maps()
 
-
           self.scroll = [0,0]
+          pygame.mixer.music.load("./Assets/Music/background_music.mp3")
+          pygame.mixer.music.play(-1)
           
           self.timer_menit = 1
           self.timer_detik = 3 
