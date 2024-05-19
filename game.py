@@ -7,6 +7,7 @@ from Object.Peti import semua_peti
 from Object.Dinding import semua_dinding
 from Object.Background import semua_background
 from Object.Maps import Maps
+from Object.Button import Button
 from pygame.locals import *
 
 
@@ -34,6 +35,40 @@ class Game:
           self.font = pygame.font.SysFont('Consolas', 30)
           pygame.time.set_timer(pygame.USEREVENT, 1000)
           
+
+     def menu(self):
+            while True:
+               bgmenu = pygame.image.load("./Assets/Img/Menu/bg_menu.png")
+               self.screen.blit(bgmenu, (0, 0))
+
+               menu_mouse_pos = pygame.mouse.get_pos()
+
+               menu_text = self.font.render("MAIN MENU", True, "#b68f40")
+               menu_rect = menu_text.get_rect(center=(400, 150))
+
+               play_button = Button(image=pygame.image.load("./Assets/Img/Menu/Rect.png"), pos=(400, 250), 
+                                   text_input="PLAY", font=self.font, base_color="#d7fcd4", hovering_color="White")
+               quit_button = Button(image=pygame.image.load("./Assets/Img/Menu/Rect.png"), pos=(400, 400), 
+                                   text_input="QUIT", font=self.font, base_color="#d7fcd4", hovering_color="White")
+
+               self.screen.blit(menu_text, menu_rect)
+
+               for button in [play_button,  quit_button]:
+                    button.changeColor(menu_mouse_pos)
+                    button.update(self.screen)
+               
+               for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                         pygame.quit()
+                         sys.exit()
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                         if play_button.checkForInput(menu_mouse_pos):
+                              self.run()
+                         if quit_button.checkForInput(menu_mouse_pos):
+                              pygame.quit()
+                              sys.exit()
+
+               pygame.display.update()
 
      def run(self):
           while True:
@@ -110,4 +145,4 @@ class Game:
                pygame.display.update()
                
 
-Game().run()
+Game().menu()

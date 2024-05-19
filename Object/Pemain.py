@@ -5,7 +5,6 @@ from .Dinding import semua_dinding
 from .Kunci import semua_kunci
 
 class Pemain(pygame.sprite.Sprite):
-
     pemain_pos = [19,42]
 
     gerak_kiri = False
@@ -41,6 +40,7 @@ class Pemain(pygame.sprite.Sprite):
         self.is_pemain_touch_kunci = pygame.sprite.spritecollide(self, semua_kunci, False)
         
         #pygame.draw.rect(screen, "Red", self.rect)
+        # Menangani kondisi jika pemain menyentuh atau menabrak dinding
         if self.is_pemain_touch_dinding:
             # tangani gerakan horizontal
             if self.gerak_kiri or self.gerak_kanan:
@@ -60,7 +60,7 @@ class Pemain(pygame.sprite.Sprite):
                     elif self.gerak_bawah and self.rect.bottom > dinding_rect.top and self.rect.top < dinding_rect.top:
                         self.gerak(0, -3)
 
-         
+        # Menangani kondisi jika pemain menyentuh atau menabrak peti
         if self.is_pemain_touch_peti:
             for peti in self.is_pemain_touch_peti:
                 peti_rect = peti.rect
@@ -73,16 +73,16 @@ class Pemain(pygame.sprite.Sprite):
                 elif self.rect.top < peti_rect.bottom and self.rect.bottom > peti_rect.bottom:
                     self.gerak(0, 3)
 
+        # Menangani kondisi jika pemain menyentuh atau menabrak kunci
         if self.is_pemain_touch_kunci:
             for kunci in self.is_pemain_touch_kunci:
                 self.kunci_terambil += 1
                 kunci.terambil = True
                 
-
-
         if self.gerak_count >= 21:
             self.gerak_count = 0
 
+        # Menangani gerakan pemain
         dx = 0
         dy = 0
         move_speed = 3
@@ -96,18 +96,16 @@ class Pemain(pygame.sprite.Sprite):
         if self.gerak_bawah:
             dy += move_speed
 
-        
         if dx != 0 and dy != 0:
             factor = 1 / 1.414 
             dx *= factor
             dy *= factor
-
+            
         self.gerak(dx, dy)
-
         if dx != 0 or dy != 0:
             self.gerak_count += 1
 
-
+        # Menangani animasi pemain dan kamera
         if self.gerak_kiri == True:
             screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_pos[0] - offset[0] , self.pemain_pos[1] - offset[1]))
         elif self.gerak_kanan == True:
@@ -124,14 +122,15 @@ class Pemain(pygame.sprite.Sprite):
         
         screen.blit(self.fog, (0,0))
 
-
+    # Fungsi apabila pemain sudah diperbolehkan melakukan interaksi dengan objek lain
     def isAbleToInteract(self, pos):
         distance = math.sqrt(math.pow(self.pemain_pos[0] - pos[0], 2) + (math.pow(self.pemain_pos[1] - pos[1], 2)))
         if distance < 32:
             return True
         else:
             return False
-
+        
+    # Fungsi untuk menangani perubahan posisi pemain berdasarkan gerakan
     def gerak(self, x, y):
         self.pemain_pos[0] += x
         self.pemain_pos[1] += y
