@@ -39,19 +39,27 @@ class Pemain(pygame.sprite.Sprite):
         self.is_pemain_touch_peti = pygame.sprite.spritecollide(self, semua_peti, False)
         self.is_pemain_touch_dinding = pygame.sprite.spritecollide(self, semua_dinding, False)
         self.is_pemain_touch_kunci = pygame.sprite.spritecollide(self, semua_kunci, False)
-
+        
         #pygame.draw.rect(screen, "Red", self.rect)
         if self.is_pemain_touch_dinding:
-            for dinding in self.is_pemain_touch_dinding:
-                dinding_rect = dinding.rect
-                if self.rect.right > dinding_rect.left and self.rect.left < dinding_rect.left:
-                    self.gerak(-3, 0)
-                elif self.rect.left < dinding_rect.right and self.rect.right > dinding_rect.right:
-                    self.gerak(3, 0)
-                if self.rect.bottom > dinding_rect.top and self.rect.top < dinding_rect.top:
-                    self.gerak(0, -3)
-                elif self.rect.top < dinding_rect.bottom and self.rect.bottom > dinding_rect.bottom:
-                    self.gerak(0, 3)
+            # tangani gerakan horizontal
+            if self.gerak_kiri or self.gerak_kanan:
+                for dinding in self.is_pemain_touch_dinding:
+                    dinding_rect = dinding.rect
+                    if self.gerak_kiri and self.rect.left < dinding_rect.right and self.rect.right > dinding_rect.right:
+                        self.gerak(3, 0)
+                    elif self.gerak_kanan and self.rect.right > dinding_rect.left and self.rect.left < dinding_rect.left:
+                        self.gerak(-3, 0)
+
+            # tangani gerakan vertikal
+            if self.gerak_atas or self.gerak_bawah:
+                for dinding in self.is_pemain_touch_dinding:
+                    dinding_rect = dinding.rect
+                    if self.gerak_atas and self.rect.top < dinding_rect.bottom and self.rect.bottom > dinding_rect.bottom:
+                        self.gerak(0, 3)
+                    elif self.gerak_bawah and self.rect.bottom > dinding_rect.top and self.rect.top < dinding_rect.top:
+                        self.gerak(0, -3)
+
          
         if self.is_pemain_touch_peti:
             for peti in self.is_pemain_touch_peti:
@@ -75,18 +83,30 @@ class Pemain(pygame.sprite.Sprite):
         if self.gerak_count >= 21:
             self.gerak_count = 0
 
-        if self.gerak_kiri == True:
-            self.gerak(-3, 0)
+        dx = 0
+        dy = 0
+        move_speed = 3
+
+        if self.gerak_kiri:
+            dx -= move_speed
+        if self.gerak_kanan:
+            dx += move_speed
+        if self.gerak_atas:
+            dy -= move_speed
+        if self.gerak_bawah:
+            dy += move_speed
+
+        
+        if dx != 0 and dy != 0:
+            factor = 1 / 1.414 
+            dx *= factor
+            dy *= factor
+
+        self.gerak(dx, dy)
+
+        if dx != 0 or dy != 0:
             self.gerak_count += 1
-        elif self.gerak_kanan == True:
-            self.gerak(3, 0)
-            self.gerak_count += 1
-        if self.gerak_bawah == True:
-            self.gerak(0, 3)
-            self.gerak_count += 1
-        elif self.gerak_atas == True:
-            self.gerak(0, -3)
-            self.gerak_count += 1
+
 
         if self.gerak_kiri == True:
             screen.blit(self.animasi_kiri[self.gerak_count // 3], (self.pemain_pos[0] - offset[0] , self.pemain_pos[1] - offset[1]))
@@ -102,7 +122,7 @@ class Pemain(pygame.sprite.Sprite):
         self.fog.fill((7,7,10))
         pygame.draw.circle(self.fog, (0,0,0,50), (self.rect.centerx - offset[0], self.rect.centery - offset[1]), 50)
         
-        # screen.blit(self.fog, (0,0))
+        screen.blit(self.fog, (0,0))
 
 
     def isAbleToInteract(self, pos):
