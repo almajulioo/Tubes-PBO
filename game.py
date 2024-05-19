@@ -29,12 +29,17 @@ class Game:
 
           self.scroll = [0,0]
           
-          self.timer_menit = 5
+          self.timer_menit = 1
           self.timer_detik = 3 
 
           self.font = pygame.font.SysFont('Consolas', 30)
           pygame.time.set_timer(pygame.USEREVENT, 1000)
           
+          self.game_over = False
+          self.win = False
+
+     def get_font(self, size): 
+          return pygame.font.SysFont('Consolas', size)
 
      def menu(self):
             while True:
@@ -43,15 +48,27 @@ class Game:
 
                menu_mouse_pos = pygame.mouse.get_pos()
 
-               menu_text = self.font.render("MAIN MENU", True, "#b68f40")
+               menu_text = self.get_font(50).render("MAIN MENU", True, "#b68f40")
                menu_rect = menu_text.get_rect(center=(400, 150))
 
-               play_button = Button(image=pygame.image.load("./Assets/Img/Menu/Rect.png"), pos=(400, 250), 
-                                   text_input="PLAY", font=self.font, base_color="#d7fcd4", hovering_color="White")
-               quit_button = Button(image=pygame.image.load("./Assets/Img/Menu/Rect.png"), pos=(400, 400), 
-                                   text_input="QUIT", font=self.font, base_color="#d7fcd4", hovering_color="White")
+               over_text = self.get_font(50).render("GAME OVER", True, "red")
+               over_rect = menu_text.get_rect(center=(400, 150))
 
-               self.screen.blit(menu_text, menu_rect)
+               win_text = self.get_font(50).render("YOU WIN", True, "green")
+               win_rect = menu_text.get_rect(center=(425, 150))
+
+               play_button = Button(image=pygame.image.load("./Assets/Img/Menu/Rect.png"), pos=(400, 250), 
+                                   text_input="PLAY", font=self.get_font(45), base_color="#d7fcd4", hovering_color="White")
+               quit_button = Button(image=pygame.image.load("./Assets/Img/Menu/Rect.png"), pos=(400, 400), 
+                                   text_input="QUIT", font=self.get_font(35), base_color="#d7fcd4", hovering_color="White")
+
+               
+               if self.game_over == True:
+                    self.screen.blit(over_text, over_rect)
+               elif self.win == True:
+                    self.screen.blit(win_text, win_rect)
+               else:
+                    self.screen.blit(menu_text, menu_rect)
 
                for button in [play_button,  quit_button]:
                     button.changeColor(menu_mouse_pos)
@@ -63,6 +80,8 @@ class Game:
                          sys.exit()
                     if event.type == pygame.MOUSEBUTTONDOWN:
                          if play_button.checkForInput(menu_mouse_pos):
+                              self.game_over = False
+                              self.win = False
                               self.run()
                          if quit_button.checkForInput(menu_mouse_pos):
                               pygame.quit()
@@ -93,7 +112,7 @@ class Game:
 
                     if event.type == pygame.USEREVENT:
                          self.timer_detik -= 1
-                         if self.timer_detik == 0:
+                         if self.timer_detik == -1:
                               self.timer_menit -= 1
                               self.timer_detik = 59
                     
@@ -132,7 +151,6 @@ class Game:
                semua_kunci.update(self.display, self.scroll)
                self.pemain.update(self.display, self.scroll)
                
-
               
                self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
                if self.timer_detik <= 10:
@@ -141,6 +159,11 @@ class Game:
                     self.screen.blit(self.font.render(f"0{self.timer_menit}:{self.timer_detik}", True, (255, 255, 255)), (700, 50))
 
                self.screen.blit(self.font.render(f"Kunci Terambil : {self.pemain.kunci_terambil}", True, (255, 255, 255)), (20, 50))
+
+               if self.timer_menit == 0 and self.timer_detik == 0:
+                    self.game_over = True
+                    self.menu()
+
                # Melakukan update setiap iterasi
                pygame.display.update()
                
