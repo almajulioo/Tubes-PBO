@@ -30,7 +30,7 @@ class Game:
           # pygame.mixer.music.load("./Assets/Music/background_music.mp3")
           # pygame.mixer.music.play(-1)
           
-          self.timer_menit = 1
+          self.timer_menit = 0
           self.timer_detik = 3 
 
           self.font = pygame.font.SysFont('Consolas', 30)
@@ -83,6 +83,8 @@ class Game:
                          if play_button.checkForInput(menu_mouse_pos):
                               self.game_over = False
                               self.win = False
+                              self.timer_menit = 0
+                              self.timer_detik = 3
                               self.run()
                          if quit_button.checkForInput(menu_mouse_pos):
                               pygame.quit()
