@@ -1,6 +1,7 @@
 import pygame
 import sys
 import time
+import random
 from Object.Pemain import Pemain
 from Object.Kunci import semua_kunci
 from Object.Peti import semua_peti
@@ -27,13 +28,17 @@ class Game:
           self.maps = Maps()
 
           self.scroll = [0,0]
-          # pygame.mixer.music.load("./Assets/Music/background_music.mp3")
-          # pygame.mixer.music.play(-1)
+          pygame.mixer.music.load("./Assets/Music/rebel_path.mp3")
+          pygame.mixer.music.play(-1)
           
         
 
+          self.TIMER_GAME = pygame.USEREVENT 
+          self.TIMER_POWUP = pygame.USEREVENT 
+
           self.font = pygame.font.SysFont('Consolas', 30)
-          pygame.time.set_timer(pygame.USEREVENT, 1000)
+          pygame.time.set_timer(self.TIMER_GAME, 1000)
+          pygame.time.set_timer(self.TIMER_POWUP, 1000)
           
           self.game_over = False
           self.win = False
@@ -95,7 +100,7 @@ class Game:
                               sys.exit()
 
                pygame.display.update()
-
+          
      def run(self):
           while True:
                # Setting Frame Per Second
@@ -108,7 +113,7 @@ class Game:
                # Selalu Mengisi screen dengan layar hitam
                self.display.fill((0, 0, 0))
                
-
+               
 
                # Penanganan event pygame
                for event in pygame.event.get():
@@ -117,13 +122,26 @@ class Game:
                          pygame.quit()
                          sys.exit()
 
-                    if event.type == pygame.USEREVENT:
+                    if event.type == self.TIMER_GAME:
                          self.timer_detik -= 1
                          if self.timer_detik == -1:
                               self.timer_menit -= 1
                               self.timer_detik = 59
+
+                    if event.type == self.TIMER_POWUP:
+                         for peti in semua_peti.sprites():
+                              if peti.powup == True:
+                                   peti.timer -= 1
+                                   print(peti.timer)
+                                   if peti.timer == 0:
+                                        self.pemain.fog_vision = 50
+                                        self.pemain.move_speed = 3
+                                        peti.powup = False
+                                        peti.timer = 15
+                                   
+                       
                     
-                    # Penanganan jika menekan suatu tombol
+                    # Penanganan jika menekan suatu dtombol
                     if event.type == pygame.KEYDOWN:
                          if event.key == pygame.K_a:
                               self.pemain.gerak_kiri = True
@@ -137,7 +155,23 @@ class Game:
                               for peti in semua_peti.sprites():
                                    if self.pemain.isAbleToInteract(peti.rect.topleft):
                                         peti.buka = True
-                    
+                                        for peti in semua_peti.sprites():
+                                             if peti.powup == True:
+                                                  self.pemain.fog_vision = 50
+                                                  self.pemain.move_speed = 3
+                                                  peti.powup = False
+                                                  peti.timer = 15
+                                        peti.powup = True
+                                        i = random.randint(1, 4)
+                                        if i == 1:
+                                             self.pemain.fog_vision = 80
+                                        elif i == 2:
+                                             self.pemain.fog_vision = 30
+                                        elif i == 3:
+                                             self.pemain.move_speed = 5
+                                        elif i == 4:
+                                             self.pemain.move_speed = 1.5
+
                     # Penanganan jika melepas suatu tombol
                     if event.type == pygame.KEYUP:
                          if event.key == pygame.K_a:
@@ -151,6 +185,8 @@ class Game:
                          if event.key == pygame.K_s:
                               self.pemain.gerak_bawah = False
 
+                    
+                              
                # Melakukan update untuk setiap objek (Berguna juga untuk mengatur layer dari yang terbelakang hingga terdepan)
                semua_background.update(self.display, self.scroll)
                semua_dinding.update(self.display, self.scroll)
