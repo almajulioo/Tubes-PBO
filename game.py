@@ -19,7 +19,7 @@ class Game:
 
           pygame.display.set_caption("Maze Rusher")
           self.screen = pygame.display.set_mode((800, 600))
-          self.display = pygame.Surface((400,300))
+          self.display = pygame.Surface((400, 300))
 
           self.clock = pygame.time.Clock()
 
@@ -31,7 +31,7 @@ class Game:
           pygame.mixer.music.load("./Assets/Music/rebel_path.mp3")
           pygame.mixer.music.play(-1)
           
-          self.timer_menit = 1
+          self.timer_menit = 0
           self.timer_detik = 3 
 
           self.TIMER_GAME = pygame.USEREVENT 
@@ -88,6 +88,8 @@ class Game:
                          if play_button.checkForInput(menu_mouse_pos):
                               self.game_over = False
                               self.win = False
+                              self.timer_menit = 0
+                              self.timer_detik = 3
                               self.run()
                          if quit_button.checkForInput(menu_mouse_pos):
                               pygame.quit()

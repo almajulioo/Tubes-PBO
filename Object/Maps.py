@@ -6,24 +6,36 @@ from .Kunci import Kunci
 
 class Maps:
     MAPS = [
-        "MAAAAAAAAAAAAAAAAAAAAAAN",
-        "     K L   PL          K",
-        "L    AAA    L      P   N",
-        "M           AAA        K",
-        "L    VVV               N",
-        "MVVVVK LV  VV          K",
-        "L                      N",
-        "M                      K",
-        "L                      N",
-        "M                      K",
-        "L                      N",
-        "M              Z  Z    K",
-        "L                      N",
-        "M                      K",
-        "L                      K",
-        "M                      K",
-        "L                      K",
-        "GCBBCBBCBBCBBBBCBBCBBCBH",
+        "MAAFFAAAAAAAFFAAAAAAAAAAAAFFAAFAN",
+        "   FF       FF            FF  F  ",            
+        "M  FF FFFF  FF  FFFFFFFF  FF FF K",
+        "M  AA AAFF PFF  FFFFFFFF ZFF FF K",
+        "L       FFFFFF  FF   PFFFFFF FF K",
+        "M       FFAAFF  FF  FFFAAAAA AA K",
+        "LFFFFF  FF  FF  FF  FFF         K",
+        "MAAAAA  FF  AA  FF  FFF         K",
+        "L       FF      FF  FFF  FF  FF K",
+        "M FF FFFFFFFFF  FF  FFF  FF  FF K",
+        "L FF AAAAAAAFF  FF  AAA  FF  FF K",
+        "M FF        FF  FF       FF  FFFK",
+        "L FF        FF  FF       FF  AAAK",
+        "M FFFFFFFF  FF  FFFFFFF  FF     K",
+        "L AAAAAAAA  AA  AAAAAAA  FF     K",
+        "M                        FF FF  K",
+        "L                    FFFFFF AA  K",
+        "MFFFFFFFFFFFF        FFAAAA     K",
+        "LAAAAAAAAAAAA    P   FF     FFFFK",
+        "M                    FF FF  AAFFK",
+        "L                    FF FF    FFK",
+        "M  FFFFF  FFF        FF PF    FFK",
+        "L  FFFFF  FFFFFFFF  FFFFFF    FFK",
+        "M  FFZFF  AAAAAAFF  AAAAFF    FFK",
+        "L  FF AA        FF      FF    FFK",
+        "M  AA    FFFFF  FF  FFFFFF    FFK",
+        "L     FF AAAAF  FF  AAAAFF    FFK",
+        "MFF   FF     F PFF      FF    AAK",
+        "LFF   FF     FFFFF      FF     ZK",
+        "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
     ]
 
     def __init__(self):
@@ -57,6 +69,8 @@ class Maps:
                     Dinding(x + 9, y - 10, "penghubung")
                 elif col == "H":
                     Dinding(x - 9, y - 10, "penghubung")
+                elif col == "F":
+                    Dinding(x, y, "dinding_full")
                 elif col == "P":
                     Peti(x, y)
                 elif col == "Z":
