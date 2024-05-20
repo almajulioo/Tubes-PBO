@@ -18,7 +18,7 @@ class Game:
 
           pygame.display.set_caption("Maze Rusher")
           self.screen = pygame.display.set_mode((800, 600))
-          self.display = pygame.Surface((400,300))
+          self.display = pygame.Surface((400, 300))
 
           self.clock = pygame.time.Clock()
 
@@ -27,8 +27,8 @@ class Game:
           self.maps = Maps()
 
           self.scroll = [0,0]
-          pygame.mixer.music.load("./Assets/Music/background_music.mp3")
-          pygame.mixer.music.play(-1)
+          # pygame.mixer.music.load("./Assets/Music/background_music.mp3")
+          # pygame.mixer.music.play(-1)
           
           self.timer_menit = 1
           self.timer_detik = 3 

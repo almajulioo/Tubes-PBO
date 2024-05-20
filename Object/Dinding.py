@@ -21,6 +21,8 @@ class Dinding(pygame.sprite.Sprite):
             self.dinding = pygame.image.load("./Assets/Img/Dinding/dinding_kanan2.png")
         elif sisi == "penghubung":
             self.dinding = pygame.image.load("./Assets/Img/Dinding/penghubung.png")
+        elif sisi == "dinding_full":
+            self.dinding = pygame.image.load("./Assets/Img/Dinding/dinding_full.png")
        
        
         self.rect = self.dinding.convert_alpha().get_rect()
