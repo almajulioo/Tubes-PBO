@@ -19,7 +19,7 @@ class Kunci(pygame.sprite.Sprite):
         # pygame.draw.rect(screen, "Red", self.rect)
         screen.blit(self.kunci, (self.rect[0] - offset[0], self.rect[1] - offset[1]))
         if self.terambil == True:
-            self.rect.centerx = 1000
+            self.rect.centerx = 10000
     
     def reset(self):
         self.rect.center = (self.x, self.y)
