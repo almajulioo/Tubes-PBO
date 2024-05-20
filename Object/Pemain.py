@@ -3,6 +3,7 @@ import math
 from .Peti import semua_peti
 from .Dinding import semua_dinding
 from .Kunci import semua_kunci
+from .Door import semua_door
 
 class Pemain(pygame.sprite.Sprite):
     pemain_pos = [40,42]
@@ -32,6 +33,7 @@ class Pemain(pygame.sprite.Sprite):
         self.rect.height -= 16
         self.is_pemain_touch_peti = pygame.sprite.spritecollide(self, semua_peti, False)
         self.is_pemain_touch_dinding  = pygame.sprite.spritecollide(self, semua_dinding, False)
+        self.is_pemain_touch_door = pygame.sprite.spritecollide(self, semua_door, False)
         self.fog = pygame.Surface((400, 300)).convert_alpha()
         self.fog_vision = 50
         self.move_speed = 3
@@ -41,6 +43,7 @@ class Pemain(pygame.sprite.Sprite):
         self.is_pemain_touch_peti = pygame.sprite.spritecollide(self, semua_peti, False)
         self.is_pemain_touch_dinding = pygame.sprite.spritecollide(self, semua_dinding, False)
         self.is_pemain_touch_kunci = pygame.sprite.spritecollide(self, semua_kunci, False)
+        self.is_pemain_touch_door = pygame.sprite.spritecollide(self, semua_door, False)
         
         #pygame.draw.rect(screen, "Red", self.rect)
         # Menangani kondisi jika pemain menyentuh atau menabrak dinding
@@ -75,6 +78,19 @@ class Pemain(pygame.sprite.Sprite):
                     self.gerak(0, -self.move_speed)
                 elif self.rect.top < peti_rect.bottom and self.rect.bottom > peti_rect.bottom:
                     self.gerak(0, self.move_speed)
+
+        if self.is_pemain_touch_door:
+            for door in self.is_pemain_touch_door:
+                door_rect = door.rect
+                if self.rect.right > door_rect.left and self.rect.left < door_rect.left:
+                    self.gerak(-self.move_speed, 0)
+                elif self.rect.left < door_rect.right and self.rect.right > door_rect.right:
+                    self.gerak(self.move_speed, 0)
+                elif self.rect.bottom > door_rect.top and self.rect.top < door_rect.top:
+                    self.gerak(0, -self.move_speed)
+                elif self.rect.top < door_rect.bottom and self.rect.bottom > door_rect.bottom:
+                    self.gerak(0, self.move_speed)
+
 
         # Menangani kondisi jika pemain menyentuh atau menabrak kunci
         if self.is_pemain_touch_kunci:

@@ -1,12 +1,12 @@
 import pygame
 import sys
-import time
 import random
 from Object.Pemain import Pemain
 from Object.Kunci import semua_kunci
 from Object.Peti import semua_peti
 from Object.Dinding import semua_dinding
 from Object.Background import semua_background
+from Object.Door import semua_door
 from Object.Maps import Maps
 from Object.Button import Button
 from pygame.locals import *
@@ -19,7 +19,7 @@ class Game:
 
           pygame.display.set_caption("Maze Rusher")
           self.screen = pygame.display.set_mode((800, 600))
-          self.display = pygame.Surface((1600, 900))
+          self.display = pygame.Surface((400, 300))
 
           self.clock = pygame.time.Clock()
 
@@ -87,8 +87,8 @@ class Game:
                          if play_button.checkForInput(menu_mouse_pos):
                               self.game_over = False
                               self.win = False
-                              self.timer_menit = 0
-                              self.timer_detik = 20
+                              self.timer_menit = 5
+                              self.timer_detik = 1
                               for peti in semua_peti.sprites():
                                    peti.reset()
                               for kunci in semua_kunci.sprites():
@@ -172,6 +172,11 @@ class Game:
                                         elif i == 4:
                                              self.pemain.move_speed = 1.5
 
+                              for door in semua_dinding.sprites():
+                                   if self.pemain.isAbleToInteract(door.rect.topleft) and self.pemain.kunci_terambil == 3:
+                                        self.win = True
+                                        self.menu()
+
                     # Penanganan jika melepas suatu tombol
                     if event.type == pygame.KEYUP:
                          if event.key == pygame.K_a:
@@ -192,6 +197,7 @@ class Game:
                semua_dinding.update(self.display, self.scroll)
                semua_peti.update(self.display, self.scroll)
                semua_kunci.update(self.display, self.scroll)
+               semua_door.update(self.display, self.scroll)
                self.pemain.update(self.display, self.scroll)
                
               

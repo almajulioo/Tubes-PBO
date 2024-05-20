@@ -3,11 +3,12 @@ from .Dinding import Dinding
 from .Peti import Peti
 from .Background import Background
 from .Kunci import Kunci
+from .Door import Door
 
 class Maps:
     MAPS = [
         "MAAFFAAAAAAAFFAAAAAAAAAAAAFFAAFAN",
-        "M  ZFF       FF            FF  F  ",            
+        "M  FF       FF            FF  F D",            
         "M  FF FFFF  FF  FFFFFFFF  FF FF K",
         "M  AA AAFF PFF  FFFFFFFF ZFF FF K",
         "L       FFFFFF  FF   PFFFFFF FF K",
@@ -73,6 +74,8 @@ class Maps:
                     Dinding(x, y, "dinding_full")
                 elif col == "P":
                     Peti(x, y)
+                elif col == "D":
+                    Door(x - 9, y)
                 elif col == "Z":
                     Background(x, y)
                     Kunci(x, y, "")

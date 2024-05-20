@@ -5,6 +5,8 @@ semua_dinding = pygame.sprite.Group()
 class Dinding(pygame.sprite.Sprite):
     def __init__(self, x, y, sisi):
         super(Dinding, self).__init__()
+        self.door = False
+
         if sisi == "atas":
             self.dinding = pygame.image.load("./Assets/Img/Dinding/dinding_atas.png")
         elif sisi == "bawah":
@@ -23,7 +25,7 @@ class Dinding(pygame.sprite.Sprite):
             self.dinding = pygame.image.load("./Assets/Img/Dinding/penghubung.png")
         elif sisi == "dinding_full":
             self.dinding = pygame.image.load("./Assets/Img/Dinding/dinding_full.png")
-       
+        
        
         self.rect = self.dinding.convert_alpha().get_rect()
         self.rect.center = (x, y)
