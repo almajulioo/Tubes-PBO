@@ -12,6 +12,7 @@ class Pemain(pygame.sprite.Sprite):
     gerak_atas = False
     gerak_bawah = False
     gerak_count = 0
+
     
     animasi_diam = pygame.image.load("./Assets/Img/Pemain/Diam.png")
 
@@ -32,6 +33,8 @@ class Pemain(pygame.sprite.Sprite):
         self.is_pemain_touch_peti = pygame.sprite.spritecollide(self, semua_peti, False)
         self.is_pemain_touch_dinding  = pygame.sprite.spritecollide(self, semua_dinding, False)
         self.fog = pygame.Surface((400, 300)).convert_alpha()
+        self.fog_vision = 50
+        self.move_speed = 3
 
     def update(self, screen, offset=(0,0)):
         self.rect.center = (self.pemain_pos[0] + 16, self.pemain_pos[1] + 24)
@@ -47,31 +50,31 @@ class Pemain(pygame.sprite.Sprite):
                 for dinding in self.is_pemain_touch_dinding:
                     dinding_rect = dinding.rect
                     if self.gerak_kiri and self.rect.left < dinding_rect.right and self.rect.right > dinding_rect.right:
-                        self.gerak(3, 0)
+                        self.gerak(self.move_speed, 0)
                     elif self.gerak_kanan and self.rect.right > dinding_rect.left and self.rect.left < dinding_rect.left:
-                        self.gerak(-3, 0)
+                        self.gerak(-self.move_speed, 0)
 
             # tangani gerakan vertikal
             if self.gerak_atas or self.gerak_bawah:
                 for dinding in self.is_pemain_touch_dinding:
                     dinding_rect = dinding.rect
                     if self.gerak_atas and self.rect.top < dinding_rect.bottom and self.rect.bottom > dinding_rect.bottom:
-                        self.gerak(0, 3)
+                        self.gerak(0, self.move_speed)
                     elif self.gerak_bawah and self.rect.bottom > dinding_rect.top and self.rect.top < dinding_rect.top:
-                        self.gerak(0, -3)
+                        self.gerak(0, -self.move_speed)
 
         # Menangani kondisi jika pemain menyentuh atau menabrak peti
         if self.is_pemain_touch_peti:
             for peti in self.is_pemain_touch_peti:
                 peti_rect = peti.rect
                 if self.rect.right > peti_rect.left and self.rect.left < peti_rect.left:
-                    self.gerak(-3, 0)
+                    self.gerak(-self.move_speed, 0)
                 elif self.rect.left < peti_rect.right and self.rect.right > peti_rect.right:
-                    self.gerak(3, 0)
+                    self.gerak(self.move_speed, 0)
                 elif self.rect.bottom > peti_rect.top and self.rect.top < peti_rect.top:
-                    self.gerak(0, -3)
+                    self.gerak(0, -self.move_speed)
                 elif self.rect.top < peti_rect.bottom and self.rect.bottom > peti_rect.bottom:
-                    self.gerak(0, 3)
+                    self.gerak(0, self.move_speed)
 
         # Menangani kondisi jika pemain menyentuh atau menabrak kunci
         if self.is_pemain_touch_kunci:
@@ -85,16 +88,15 @@ class Pemain(pygame.sprite.Sprite):
         # Menangani gerakan pemain
         dx = 0
         dy = 0
-        move_speed = 3
 
         if self.gerak_kiri:
-            dx -= move_speed
+            dx -= self.move_speed
         if self.gerak_kanan:
-            dx += move_speed
+            dx += self.move_speed
         if self.gerak_atas:
-            dy -= move_speed
+            dy -= self.move_speed
         if self.gerak_bawah:
-            dy += move_speed
+            dy += self.move_speed
 
         if dx != 0 and dy != 0:
             factor = 1 / 1.414 
@@ -117,8 +119,9 @@ class Pemain(pygame.sprite.Sprite):
         else:
             screen.blit(self.animasi_diam, (self.pemain_pos[0] - offset[0], self.pemain_pos[1] - offset[1]))
 
+        
         self.fog.fill((7,7,10))
-        pygame.draw.circle(self.fog, (0,0,0,50), (self.rect.centerx - offset[0], self.rect.centery - offset[1]), 50)
+        pygame.draw.circle(self.fog, (0,0,0,50), (self.rect.centerx - offset[0], self.rect.centery - offset[1]), self.fog_vision)
         
         screen.blit(self.fog, (0,0))
 
