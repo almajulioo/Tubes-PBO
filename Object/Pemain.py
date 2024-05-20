@@ -5,7 +5,7 @@ from .Dinding import semua_dinding
 from .Kunci import semua_kunci
 
 class Pemain(pygame.sprite.Sprite):
-    pemain_pos = [19,42]
+    pemain_pos = [40,42]
 
     gerak_kiri = False
     gerak_kanan = False
@@ -134,3 +134,12 @@ class Pemain(pygame.sprite.Sprite):
     def gerak(self, x, y):
         self.pemain_pos[0] += x
         self.pemain_pos[1] += y
+
+    def reset(self):
+        self.pemain_pos[0] = 40
+        self.pemain_pos[1] = 42
+        self.kunci_terambil = 0
+        self.gerak_kiri == False
+        self.gerak_kanan == False
+        self.gerak_bawah == False
+        self.gerak_atas == False

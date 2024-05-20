@@ -1,7 +1,6 @@
 import pygame
 
 semua_peti = pygame.sprite.Group()
-list_semua_peti = semua_peti.sprites()
 
 class Peti(pygame.sprite.Sprite):
     animasi_diam = pygame.image.load("./Assets/Img/Peti/diam.png")
@@ -37,4 +36,7 @@ class Peti(pygame.sprite.Sprite):
             else:  
                 screen.blit(self.animasi_diam, (self.rect[0] - offset[0], self.rect[1] - offset[1]))
 
-            
+    def reset(self):
+        self.suara_counter = 0
+        self.animasi_count = 0
+        self.animasi_diam = pygame.image.load("./Assets/Img/Peti/diam.png")

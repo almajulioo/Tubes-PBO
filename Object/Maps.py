@@ -7,7 +7,7 @@ from .Kunci import Kunci
 class Maps:
     MAPS = [
         "MAAFFAAAAAAAFFAAAAAAAAAAAAFFAAFAN",
-        "   FF       FF            FF  F  ",            
+        "M  ZFF       FF            FF  F  ",            
         "M  FF FFFF  FF  FFFFFFFF  FF FF K",
         "M  AA AAFF PFF  FFFFFFFF ZFF FF K",
         "L       FFFFFF  FF   PFFFFFF FF K",

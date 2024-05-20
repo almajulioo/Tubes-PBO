@@ -18,7 +18,7 @@ class Game:
 
           pygame.display.set_caption("Maze Rusher")
           self.screen = pygame.display.set_mode((800, 600))
-          self.display = pygame.Surface((400, 300))
+          self.display = pygame.Surface((1600, 900))
 
           self.clock = pygame.time.Clock()
 
@@ -30,8 +30,7 @@ class Game:
           # pygame.mixer.music.load("./Assets/Music/background_music.mp3")
           # pygame.mixer.music.play(-1)
           
-          self.timer_menit = 0
-          self.timer_detik = 3 
+        
 
           self.font = pygame.font.SysFont('Consolas', 30)
           pygame.time.set_timer(pygame.USEREVENT, 1000)
@@ -44,7 +43,7 @@ class Game:
 
      def menu(self):
             while True:
-               bgmenu = pygame.image.load("./Assets/Img/Menu/bg_menu.png")
+               bgmenu = pygame.image.load("./Assets/Img/Menu/bg_menu.webp")
                self.screen.blit(bgmenu, (0, 0))
 
                menu_mouse_pos = pygame.mouse.get_pos()
@@ -84,7 +83,12 @@ class Game:
                               self.game_over = False
                               self.win = False
                               self.timer_menit = 0
-                              self.timer_detik = 3
+                              self.timer_detik = 20
+                              for peti in semua_peti.sprites():
+                                   peti.reset()
+                              for kunci in semua_kunci.sprites():
+                                   kunci.reset()
+                              self.pemain.reset()
                               self.run()
                          if quit_button.checkForInput(menu_mouse_pos):
                               pygame.quit()
@@ -156,7 +160,7 @@ class Game:
                
               
                self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
-               if self.timer_detik <= 10:
+               if self.timer_detik < 10:
                     self.screen.blit(self.font.render(f"0{self.timer_menit}:0{self.timer_detik}", True, (255, 255, 255)), (700, 50))
                else:
                     self.screen.blit(self.font.render(f"0{self.timer_menit}:{self.timer_detik}", True, (255, 255, 255)), (700, 50))
