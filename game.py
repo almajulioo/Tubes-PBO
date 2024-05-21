@@ -31,6 +31,7 @@ class Game:
           self.scroll = [0,0]
           pygame.mixer.music.load("./Assets/Music/background_music.mp3")
           pygame.mixer.music.play(-1)
+          pygame.mixer.music.set_volume(0.3)
           
         
 
@@ -181,10 +182,17 @@ class Game:
 
 
                               for door in semua_door.sprites():
-                                   if self.pemain.isAbleToInteract(door.rect.topleft) and self.pemain.kunci_terambil == 3:
-                                        self.win = True
-                                        pygame.mixer.Sound.play(door.sound)
-                                        self.menu()
+                                   if self.pemain.isAbleToInteract(door.rect.topleft):
+                                        if self.pemain.kunci_terambil >= 3:
+                                             self.win = True
+                                             pygame.mixer.Sound.play(door.sound)
+                                             self.menu()
+                                        else:
+                                             self.screen.blit(self.get_font(35).render(f"Kumpulkan 3 Kunci!", True, "white"), (250, 100))
+                                             pygame.display.flip()
+                                             pygame.event.pump()
+                                             pygame.time.delay(1000)
+
 
                     # Penanganan jika melepas suatu tombol
                     if event.type == pygame.KEYUP:
@@ -216,7 +224,7 @@ class Game:
                else:
                     self.screen.blit(self.font.render(f"0{self.timer_menit}:{self.timer_detik}", True, (255, 255, 255)), (700, 50))
 
-               self.screen.blit(self.font.render(f"Kunci Terambil : {self.pemain.kunci_terambil}", True, (255, 255, 255)), (20, 50))
+               self.screen.blit(self.font.render(f"Kunci:{self.pemain.kunci_terambil}/3", True, (255, 255, 255)), (20, 50))
 
                for peti in semua_peti.sprites():
                     if peti.timer >= 12:
