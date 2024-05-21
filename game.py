@@ -130,13 +130,14 @@ class Game:
 
                     if event.type == self.TIMER_POWUP:
                          for peti in semua_peti.sprites():
-                              if peti.powup == True:
+                              if peti.powup == True or peti.powdown == True:
                                    peti.timer -= 1
                                    print(peti.timer)
                                    if peti.timer == 0:
                                         self.pemain.fog_vision = 50
                                         self.pemain.move_speed = 3
                                         peti.powup = False
+                                        peti.powdown = False
                                         peti.timer = 15
                                    
                        
@@ -160,17 +161,23 @@ class Game:
                                                   self.pemain.fog_vision = 50
                                                   self.pemain.move_speed = 3
                                                   peti.powup = False
+                                                  peti.powdown = False
                                                   peti.timer = 15
-                                        peti.powup = True
+                                        
                                         i = random.randint(1, 4)
                                         if i == 1:
                                              self.pemain.fog_vision = 80
+                                             peti.powup = True
                                         elif i == 2:
                                              self.pemain.fog_vision = 30
+                                             peti.powdown = True
                                         elif i == 3:
                                              self.pemain.move_speed = 5
+                                             peti.powup = True
                                         elif i == 4:
                                              self.pemain.move_speed = 1.5
+                                             peti.powdown = True
+
 
                               for door in semua_dinding.sprites():
                                    if self.pemain.isAbleToInteract(door.rect.topleft) and self.pemain.kunci_terambil == 3:
@@ -200,7 +207,7 @@ class Game:
                semua_door.update(self.display, self.scroll)
                self.pemain.update(self.display, self.scroll)
                
-              
+
                self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
                if self.timer_detik < 10:
                     self.screen.blit(self.font.render(f"0{self.timer_menit}:0{self.timer_detik}", True, (255, 255, 255)), (700, 50))
@@ -208,6 +215,17 @@ class Game:
                     self.screen.blit(self.font.render(f"0{self.timer_menit}:{self.timer_detik}", True, (255, 255, 255)), (700, 50))
 
                self.screen.blit(self.font.render(f"Kunci Terambil : {self.pemain.kunci_terambil}", True, (255, 255, 255)), (20, 50))
+
+               for peti in semua_peti.sprites():
+                    if peti.timer >= 12:
+                         if peti.powup == True:
+                              if peti.timer == 15:
+                                   pygame.mixer.Sound.play(peti.boost)
+                              self.screen.blit(self.get_font(35).render(f"YOU GOT POWER UP!!", True, "green"), (250, 100))
+                         if peti.powdown == True:
+                              if peti.timer == 15:
+                                   pygame.mixer.Sound.play(peti.debuff)
+                              self.screen.blit(self.get_font(35).render(f"YOU GOT POWER DOWN!!", True, "red"), (250, 100))
 
                if self.timer_menit == 0 and self.timer_detik == 0:
                     self.game_over = True

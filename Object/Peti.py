@@ -16,9 +16,12 @@ class Peti(pygame.sprite.Sprite):
         self.rect = self.animasi_diam.convert_alpha().get_rect()
         self.rect.center = (self.peti_x, self.peti_y)
         self.suara_buka = pygame.mixer.Sound("./Assets/Music/buka_peti.wav")
+        self.boost = pygame.mixer.Sound("./Assets/Music/boost.mp3")
+        self.debuff = pygame.mixer.Sound("./Assets/Music/debuff.mp3")
         self.suara_counter = 0
         self.timer = 15
         self.powup = False
+        self.powdown = False
         semua_peti.add(self)
        
 
