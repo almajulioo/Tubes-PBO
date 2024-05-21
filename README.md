@@ -6,7 +6,7 @@
 - [Desain UML](#desain-uml)
 - [Kontributor](#kontributor)
 
-# Tema Game
+# Karakteristik & Tema Game
 Adventure
 - Pemain akan berpetualang menjelajahi labirin yang luas dan
 penuh misteri, mencari jalan keluar yang tersembunyi.
@@ -15,10 +15,6 @@ Timer
 - Pemain harus bergerak cepat dan cerdik untuk menemukan 3
 kunci dalam waktu 5 menit sebelum pintu labirin tertutup
 selamanya.
-
-Labirin
-- Suasana mencekam dan ancaman bahaya mengintai di setiap
-langkah, membuat pemain merasa tegang dan waspada
 
 
 ## Background Story
