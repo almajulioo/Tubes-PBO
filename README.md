@@ -1,17 +1,52 @@
 # Maze Rusher
 
 - [Background Story](#background-story)
+- [Tema Game](#tema-game)
 - [Library](#library)
 - [Desain UML](#desain-uml)
 - [Kontributor](#kontributor)
 
+# Tema Game
+Adventure
+- Pemain akan berpetualang menjelajahi labirin yang luas dan
+penuh misteri, mencari jalan keluar yang tersembunyi.
+
+Timer
+- Pemain harus bergerak cepat dan cerdik untuk menemukan 3
+kunci dalam waktu 5 menit sebelum pintu labirin tertutup
+selamanya.
+
+Labirin
+- Suasana mencekam dan ancaman bahaya mengintai di setiap
+langkah, membuat pemain merasa tegang dan waspada
+
+
 ## Background Story
 
-Di sebuah desa ada penyakit yang tidak diketahui asal usulnya yang menyerang warga setempat. Dokter manapun tidak ada yang berhasil menyembuhkannya. Lama kelamaan warga setempat yang tidak terkena penyakit mulai pindah dan desa itu menjadi desa mati. Namun walau begitu, masih ada beberapa penduduk yang memilih menetap karna tidak punya uang untuk pindah dan mencari tempat baru. X menjadi salah satu warga yang selamat dan memilih menetap, namun ibunya sudah sekarat karna penyakit ini yang menyerang sistem saraf otak yang lama kelamaan akan meledakkan pembuluh darah jika dibiarkan. X mencari segala cara untuk menyelamatkan ibunya. Saat sedang mencari cara, ia bertemu dengan seorang nenek yang mengatakan bahwa di dalam labirin ada obat yang dapat menyembuhkan segala macam penyakit. Awalnya ia tidak percaya, namun karna tekadnya yang kuat untuk menyembuhkan ibunya, ia langsung masuk labirin yang memusingkan. Saat masuk, ternyata ada peringatan bahwa labirin akan ditutup dalam waktu 5 menit. Jika tidak berhasil keluar dalam 5 menit, maka ia akan terjebak di labirin selamanya. Apakah X dapat keluar dan menyelamatkan ibunya?
+Seorang gadis bernama Yakui nekat mencari obat
+penyembuh untuk ibunya yang sedang sakit keras.
+Sampai sekarang tidak ada yang bisa
+menyembuhkannya. Ada rumor yang mengatakan
+“Ada sebuah obat yang bisa menyembuhkan segala
+penyakit di dalam labirin”. Tanpa basa basi, gadis
+itu segera memasuki labirint tersebut. Namun dia
+tidak tahu tantangan di dalamnya. Setelah sampai
+di dalam, bukannya menemukan obat yang dicari, ia
+malah terjebak di labirin. Apakah dia bisa berhasil
+keluar dengan selamat?
 
 ## Library
 
-Library : - Pygame
+Library : 
+- Pygame
+- Random
+- Sys
+
+## Cara Bermain
+- Pemain (X) memasuki labirin yang gelap dan mencekam untuk mencari obat penyembuh.
+- Pemain harus bergegas menemukan 3 kunci yang tersembunyi di dalam labirin
+- Setelah mendapatkan 3 kunci, pemain harus segera menemukan dan membuka pintu keluar labirin sebelum waktu habis.
+
 
 ## Desain UML
 
@@ -19,9 +54,9 @@ Library : - Pygame
 
 ## Kontributor
 
-- Alma Julio Isnansyah (122140057)
-- Muhammad Narendra Budi Utomo (122140050)
-- Kiagus M Roihan (122140073)
-- Pricelia Putri Zulkarnain (122140075)
-- Felix Ferdinandus Martua Pasaribu (122140070)
-- Naufal Saqib Athaya (122140072)
+- Alma Julio Isnansyah (122140057) - Programmer
+- Muhammad Narendra Budi Utomo (122140050) - Programmer
+- Kiagus M Roihan (122140073) - Map Designer
+- Pricelia Putri Zulkarnain (122140075) - Pembuat Laporan
+- Felix Ferdinandus Martua Pasaribu (122140070) - Pembuat Laporan
+- Naufal Saqib Athaya (122140072) - Pembuat Asset
