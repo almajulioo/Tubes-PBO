@@ -15,7 +15,7 @@ Library : - Pygame
 
 ## Desain UML
 
-<img src="./UML/UML.jpeg" alt="UML">
+<img src="./UML/UML.jpg" alt="UML">
 
 ## Kontributor
 
