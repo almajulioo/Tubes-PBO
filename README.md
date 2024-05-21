@@ -1,4 +1,4 @@
-# Maze Rusher
+# Yakui The Explorer
 
 - [Background Story](#background-story)
 - [Tema Game](#tema-game)
