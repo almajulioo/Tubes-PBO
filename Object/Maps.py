@@ -8,7 +8,7 @@ from .Door import Door
 class Maps:
     MAPS = [
         "MAAFFAAAAAAAFFAAAAAAAAAAAAFFAAFAN",
-        "M  FF       FF            FF  F D",            
+        "M  DFF       FF            FF  F D",            
         "M  FF FFFF  FF  FFFFFFFF  FF FF K",
         "M  AA AAFF PFF  FFFFFFFF ZFF FF K",
         "L       FFFFFF  FF   PFFFFFF FF K",

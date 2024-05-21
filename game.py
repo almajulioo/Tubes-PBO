@@ -180,9 +180,10 @@ class Game:
                                              peti.powdown = True
 
 
-                              for door in semua_dinding.sprites():
+                              for door in semua_door.sprites():
                                    if self.pemain.isAbleToInteract(door.rect.topleft) and self.pemain.kunci_terambil == 3:
                                         self.win = True
+                                        pygame.mixer.Sound.play(door.sound)
                                         self.menu()
 
                     # Penanganan jika melepas suatu tombol

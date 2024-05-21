@@ -21,8 +21,6 @@ class Pemain(pygame.sprite.Sprite):
 
     animasi_kiri = []
 
-    kunci_terambil = 0
-
     for i in animasi_kanan:
         animasi_kiri.append(pygame.transform.flip(i,True,False))
 
@@ -37,6 +35,7 @@ class Pemain(pygame.sprite.Sprite):
         self.fog = pygame.Surface((400, 300)).convert_alpha()
         self.fog_vision = 50
         self.move_speed = 3
+        self.kunci_terambil = 0
 
     def update(self, screen, offset=(0,0)):
         self.rect.center = (self.pemain_pos[0] + 16, self.pemain_pos[1] + 24)
@@ -97,6 +96,7 @@ class Pemain(pygame.sprite.Sprite):
             for kunci in self.is_pemain_touch_kunci:
                 self.kunci_terambil += 1
                 kunci.terambil = True
+                pygame.mixer.Sound.play(kunci.sound)
                 
         if self.gerak_count >= 21:
             self.gerak_count = 0

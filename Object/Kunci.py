@@ -10,6 +10,7 @@ class Kunci(pygame.sprite.Sprite):
         self.kunci = pygame.image.load("./Assets/Img/Kunci/kunci_putih.png")
         self.kunci.set_colorkey((0,0,0))
         self.rect = self.kunci.convert_alpha().get_rect()
+        self.sound = pygame.mixer.Sound("./Assets/Music/keysfx.mp3")
         self.x = x
         self.y = y
         self.rect.center = (x, y)

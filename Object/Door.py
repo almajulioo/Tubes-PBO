@@ -7,6 +7,7 @@ class Door(pygame.sprite.Sprite):
         super(Door, self).__init__()
         self.door = pygame.image.load("./Assets/Img/Dinding/door.png")
         self.rect = self.door.convert_alpha().get_rect()
+        self.sound = pygame.mixer.Sound("./Assets/Music/buka_pintu.mp3")
         self.x = x
         self.y = y
         self.rect.center = (x, y)
