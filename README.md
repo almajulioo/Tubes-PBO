@@ -58,6 +58,10 @@ Memungkinkan untuk berinteraksi dengan sistem
 
 <img src="./Assets/Img/demo/unlock.png" alt="" width="400"/>
 
+5. Jika waktu sudah habis tetapi pemain belum menyelesaikan game
+
+<img src="./Assets/Img/demo/gameover.png" alt="" width="400"/>
+
 
 ## Desain UML
 
