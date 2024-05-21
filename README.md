@@ -37,26 +37,26 @@ Memungkinkan untuk berinteraksi dengan sistem
 
 1. Tampilan awal game jika dibuka
 
-<img src="./Assets/Img/demo/awal.png" alt="UML" width= "500"/>
+<img src="./Assets/Img/demo/Awal.png" alt="" width= "500"/>
 
 2. Pemain menjelajahi labirin untuk menemukan 3 kunci yang ada
 
-<img src="./Assets/Img/demo/kunci1.png" alt="UML" width="400"/>
-<img src="./Assets/Img/demo/kunci2.png" alt="UML" width="400"/>
+<img src="./Assets/Img/demo/kunci1.png" alt="" width="400"/>
+<img src="./Assets/Img/demo/kunci2.png" alt="" width="400"/>
 
 3. Ada peti yang berisi buff (Bergerak Cepat atau fognya membesar) & debuff (Bergerak lambat atau fognya mengecil)
 
-<img src="./Assets/Img/demo/buff.png" alt="UML" width="400"/>
-<img src="./Assets/Img/demo/debuff.png" alt="UML" width="400"/>
+<img src="./Assets/Img/demo/buff.png" alt="" width="400"/>
+<img src="./Assets/Img/demo/debuff.png" alt="" width="400"/>
 
 4. Jika sudah menemukan 3 kunci yang ada, pemain dapat menyelesaikan game melalui pintu yang tersedia
 - Jika pemain mencoba membuka pintu dengan kunci < 3
 
-<img src="./Assets/Img/demo/lock.png" alt="UML" width="400"/>
+<img src="./Assets/Img/demo/lock.png" alt="" width="400"/>
 
 - Jika pemain mencoba membuka pintu dengan kunci = 3
 
-<img src="./Assets/Img/demo/unlock.png" alt="UML" width="400"/>
+<img src="./Assets/Img/demo/unlock.png" alt="" width="400"/>
 
 
 ## Desain UML
