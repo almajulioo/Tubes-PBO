@@ -17,10 +17,11 @@ class Game:
      def __init__(self):
           pygame.init()
 
-          pygame.display.set_caption("Maze Rusher")
+          pygame.display.set_caption("Yakui the explorer")
           self.screen = pygame.display.set_mode((800, 600))
           self.display = pygame.Surface((400, 300))
-
+          self.icon = pygame.image.load("./Assets/Img/Icon/icon.png")
+          pygame.display.set_icon(self.icon)
           self.clock = pygame.time.Clock()
 
           self.pemain = Pemain()
@@ -28,7 +29,7 @@ class Game:
           self.maps = Maps()
 
           self.scroll = [0,0]
-          pygame.mixer.music.load("./Assets/Music/rebel_path.mp3")
+          pygame.mixer.music.load("./Assets/Music/background_music.mp3")
           pygame.mixer.music.play(-1)
           
         
