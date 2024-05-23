@@ -37,7 +37,7 @@ Memungkinkan untuk berinteraksi dengan sistem
 
 1. Tampilan awal game jika dibuka
 
-<img src="./Assets/Img/demo/Awal.png" alt="" width= "500"/>
+<img src="./Assets/Img/demo/Awal.jpeg" alt="" width= "500"/>
 
 2. Pemain menjelajahi labirin untuk menemukan 3 kunci yang ada
 
@@ -56,11 +56,11 @@ Memungkinkan untuk berinteraksi dengan sistem
 
 - Jika pemain mencoba membuka pintu dengan kunci = 3
 
-<img src="./Assets/Img/demo/unlock.png" alt="" width="400"/>
+<img src="./Assets/Img/demo/win.jpeg" alt="" width="400"/>
 
 5. Jika waktu sudah habis tetapi pemain belum menyelesaikan game
 
-<img src="./Assets/Img/demo/gameover.png" alt="" width="400"/>
+<img src="./Assets/Img/demo/gameover.jpeg" alt="" width="400"/>
 
 
 ## Desain UML
@@ -70,9 +70,13 @@ Memungkinkan untuk berinteraksi dengan sistem
 
 ## Kontributor
 
-- **Alma Julio Isnansyah (122140057)** - Programmer
-- **Muhammad Narendra Budi Utomo (122140050)** - Programmer
-- **Kiagus M Roihan (122140073)** - Map Designer
-- **Pricelia Putri Zulkarnain (122140075)** - Pembuat Laporan
-- **Felix Ferdinandus Martua Pasaribu (122140070)** - Pembuat Laporan
-- **Naufal Saqib Athaya (122140072)** - Pembuat Asset
+
+| Nama | Nim | Kontribusi |
+|-----------------|-----------------|-----------------|
+| Alma Julio Isnansyah | 122140057 | Programmer |
+| Muhammad Narendra Budi Utomo | 122140050 | Programmer |
+| Kiagus M Roihan| 122140073 | Map Designer |
+| Pricelia Putri Zulkarnain| 122140075 | Pembuat Laporan |
+| Felix Ferdinandus Martua Pasaribu| 122140070 | Pembuat Laporan |
+| Naufal Saqib Athaya| 122140072 | Pembuat Asset |
+
