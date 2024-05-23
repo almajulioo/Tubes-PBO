@@ -50,7 +50,8 @@ class Game:
 
      def menu(self):
             while True:
-               bgmenu = pygame.image.load("./Assets/Img/Menu/bg_menu.webp")
+               bgmenu = pygame.image.load("./Assets/Img/Menu/bg_menu.png")
+               pygame.transform.scale(bgmenu, (800, 600))
                self.screen.blit(bgmenu, (0, 0))
 
                menu_mouse_pos = pygame.mouse.get_pos()
