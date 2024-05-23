@@ -12,7 +12,6 @@ from Object.Button import Button
 from pygame.locals import *
 
 
-
 class Game:
      def __init__(self):
           pygame.init()
@@ -66,8 +65,10 @@ class Game:
                win_rect = menu_text.get_rect(center=(425, 150))
 
                play_button = Button(image=pygame.image.load("./Assets/Img/Menu/Rect.png"), pos=(400, 250), 
-                                   text_input="PLAY", font=self.get_font(45), base_color="#d7fcd4", hovering_color="White")
-               quit_button = Button(image=pygame.image.load("./Assets/Img/Menu/Rect.png"), pos=(400, 400), 
+                                   text_input="PLAY", font=self.get_font(35), base_color="#d7fcd4", hovering_color="White")
+               credit_button = Button(image=pygame.image.load("./Assets/Img/Menu/Rect.png"), pos=(400, 375), 
+                                   text_input="CREDIT", font=self.get_font(35), base_color="#d7fcd4", hovering_color="White")
+               quit_button = Button(image=pygame.image.load("./Assets/Img/Menu/Rect.png"), pos=(400, 500), 
                                    text_input="QUIT", font=self.get_font(35), base_color="#d7fcd4", hovering_color="White")
 
                
@@ -78,7 +79,7 @@ class Game:
                else:
                     self.screen.blit(menu_text, menu_rect)
 
-               for button in [play_button,  quit_button]:
+               for button in [play_button, credit_button, quit_button]:
                     button.changeColor(menu_mouse_pos)
                     button.update(self.screen)
                
@@ -98,12 +99,48 @@ class Game:
                                    kunci.reset()
                               self.pemain.reset()
                               self.run()
+                         if credit_button.checkForInput(menu_mouse_pos):
+                              self.credit()
                          if quit_button.checkForInput(menu_mouse_pos):
                               pygame.quit()
                               sys.exit()
 
                pygame.display.update()
-          
+
+     def credit(self):
+          running = True
+          while running: 
+               self.screen.fill((0,0,0))
+               
+               # Daftar kredit
+               credits = [
+                    "KREDIT PEMBUAT",
+                    "",
+                    "Permainan Ini Dibuat Oleh:",
+                    "Alma Julio Isnansyah (122140057) - Programmer",
+                    "Muhammad Narendra Budi Utomo (122140050) - Programmer",
+                    "Kiagus M Roihan (122140073) - Map Designer",
+                    "Pricelia Putri Zulkarnain (122140075) - Pembuat Laporan",
+                    "Felix Ferdinandus Martua Pasaribu (122140070) - Pembuat Laporan",
+                    "Naufal Saqib Athaya (122140072) - Pembuat Asset",
+                    "",
+                    "Tekan 'Esc' untuk keluar."
+               ]
+               
+               # Menampilkan teks kredit
+               y = 50
+               for credit in credits:
+                    self.screen.blit(self.get_font(20).render(credit, True, "white"), (50, y))
+                    y += 40
+     
+               pygame.display.flip()
+               for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                         pygame.quit()
+                         sys.exit()
+                    elif event.type == pygame.KEYDOWN:
+                         if event.key == pygame.K_ESCAPE:
+                              running = False
      def run(self):
           while True:
                # Setting Frame Per Second
