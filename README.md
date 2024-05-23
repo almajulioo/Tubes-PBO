@@ -62,6 +62,10 @@ Memungkinkan untuk berinteraksi dengan sistem
 
 <img src="./Assets/Img/demo/gameover.jpeg" alt="" width="400"/>
 
+6. Tampilan Credit
+
+<img src="./Assets/Img/demo/credit.jpeg" alt="" width="400"/>
+
 
 ## Desain UML
 
