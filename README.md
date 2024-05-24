@@ -1,5 +1,5 @@
 # **Yakui The Explorer**
-
+- [Google Drive](https://drive.google.com/file/d/1XU2QKm-KlOq5gH6YRp4spifD1HrEpMnq/view?usp=drive_link)
 ## Daftar Isi
 - [Background Story](#background-story)
 - [Karakteristik & Tema Game](#karakteristik--tema-game)
